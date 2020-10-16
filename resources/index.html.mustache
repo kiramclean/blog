@@ -1,8 +1,24 @@
 <ul>
   {{#blog}}
-  <li>
-    <a aria-label="{{title}}" href="{{slug}}">{{title}}</a>
-    <time datetime="{{date}}">{{date}}</time>
-  </li>
+    {{>post-list-item}}
   {{/blog}}
 </ul>
+
+<section>
+  <h2>Lessons From A Pandemic</h2>
+	<ul>
+	  {{#blog/lessons-from-a-pandemic}}
+	    {{>post-list-item}}
+	  {{/blog/lessons-from-a-pandemic}}
+	</ul>
+</section>
+
+<section>
+  <h2>Reading</h2>
+	<ul>
+	  {{#blog/reading}}
+	    {{>post-list-item}}
+	  {{/blog/reading}}
+	</ul>
+</section>
+

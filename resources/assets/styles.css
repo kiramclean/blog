@@ -59,13 +59,15 @@ a:visited {
   color: var(--grey);
 }
 
-main > ul:first-child {
+main > ul:first-child,
+main section ul:nth-child(2) {
   list-style: none;
   margin: 0;
   padding: 0
 }
 
-main > ul:first-child li {
+main > ul:first-child li,
+main section ul:nth-child(2) li {
   margin-bottom: 1rem;
 }
 
