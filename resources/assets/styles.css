@@ -47,16 +47,19 @@ footer small {
 
 a {
   color: var(--color);
-  transition: color 0.25s linear;
 }
 
 a:hover, a:visited:hover {
-  color: #313131;
+  color: var(--black);
 }
-
 
 a:visited {
   color: var(--grey);
+}
+
+a:focus {
+  background: var(--color);
+  color: var(--white);
 }
 
 main > ul:first-child,
@@ -75,6 +78,25 @@ time {
   display: block;
   font-size: small;
   color: #8a8a8a;
+}
+
+blockquote {
+  border-left: 0.5rem solid var(--light-grey);
+  padding-left: 1rem;
+  margin: 2rem 0 2rem 1rem;
+}
+
+main hr {
+  border: 0;
+  background: transparent;
+  margin: 2rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--grey);
+}
+
+main hr::before{
+  content: "—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—"
 }
 
 /* to prevent fouc */

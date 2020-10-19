@@ -37,7 +37,7 @@ This is an argument I've heard before. There is enough food on earth to feed eve
 
 ## Psychological insights
 
-Having made the case for why we should give more and demonstrated that it's possible without much impact to our own lives, let alone unreasonable hardship, Singer discusses the psychology of altruism. There are some interesting ways most people think that both explain why we're so often indifferent to far-away suffering and how we might change that.
+Having made the case for why we should give more and demonstrated that it's possible without much impact to our own lives, let alone unreasonable hardship, Singer discusses the psychology of altruism. There are some interesting ways most people think that both explain why we're so often indifferent to far-away suffering and suggest how we might change that.
 
 For example, many studies show that people give more when they believe others are giving more, so we ought to publicise our giving in order to inspire others to join us.
 
@@ -77,9 +77,4 @@ This was my attempt to cover the main arguments of "The Life You Can Save", and 
 For a list of the charities that are most effective at doing that, see [Give
 Well](https://www.givewell.org/charities/top-charities), or the "Best Charities"
 list on the [book's own website](https://www.thelifeyoucansave.org/). Many of
-the top charities are based in the USA or UK, so if you're in Canada, you can
-make tax-advantaged donations through [RC Forward](https://rcforward.org/). For
-a deeper dive or clarification of anything I wrote about here, the [book is
-available for free as e-book or
-audiobook](https://www.thelifeyoucansave.org/the-book/). I'm beginning to
-evaluate the changes I need to make in my own life, and hope you'll do the same.
+the top charities are based in the USA or UK, so if you're in Canada like me, you can make tax-advantaged donations to these organisations through [RC Forward](https://rcforward.org/) to maximize your impact. For a deeper dive or clarification of anything I wrote about here, the [book is available for free as an e-book or audiobook](https://www.thelifeyoucansave.org/the-book/). I'm beginning to evaluate the changes I need to make in my own life, and hope you'll do the same.
