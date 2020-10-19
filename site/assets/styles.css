@@ -7,7 +7,7 @@
 }
 
 html {
-  font-family: Helvetica;
+  font-family: 'San Francisco', 'Helvetica Neue', 'Segoe UI', Roboto, Ubuntu, sans-serif;
   color: var(--black);
   line-height: 1.7;
   background-color: var(--white);
