@@ -99,6 +99,11 @@ main hr::before{
   content: "—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—"
 }
 
+dt {
+  margin-top: 2rem;
+  font-weight: bold;
+}
+
 /* to prevent fouc */
 html {
   visibility: visible;
