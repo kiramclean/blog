@@ -36,9 +36,13 @@ header {
 }
 
 footer {
+  align-items: center;
   border-top: 2px solid var(--light-grey);
   color: var(--grey);
+  display: flex;
+  justify-content: space-between;
   margin-top: 2rem;
+  padding: 1rem 0;
 }
 
 footer small {
