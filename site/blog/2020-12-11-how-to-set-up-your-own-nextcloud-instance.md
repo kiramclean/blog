@@ -166,8 +166,7 @@ ncbackup ALL=(ALL) NOPASSWD: /usr/sbin/ncbackup.sh
 
 - Make yourself a healthcheck endpoint at [healthchecks.io](https://healthchecks.io) and copy the ping url
 - `sudo crontab -u ncbackup -e`
-- Copy this to the bottom of the file:
-- `0 2 * * * sudo /usr/sbin/ncbackup.sh && curl -fsS -m 10 --retry 5 -o /dev/null <your-ping-url>`
+- Copy this to the bottom of the file: `0 2 * * * sudo /usr/sbin/ncbackup.sh && curl -fsS -m 10 --retry 5 -o /dev/null <your-ping-url>`
 
 This will run your backups once per day at 2am (in your server's timezone, probably UTC), but you can set whatever time and frequency you want, just remember to update your healthcheck to match.
 
