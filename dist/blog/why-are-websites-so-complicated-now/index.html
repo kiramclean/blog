@@ -13,6 +13,7 @@
        color:  #0091ab;
    }
   </style>
+  <link rel="stylesheet" href="/assets/normalize.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="/assets/styles.css" type="text/css" media="screen" />
   <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "16b2473d6f004fd09fe790d159d16d12"}'></script><!-- End Cloudflare Web Analytics -->  <body>
@@ -24,11 +25,72 @@
     </header>
     <main>
     	<h1>Why Are Websites So Complicated Now?</h1>
-      <p>I first got into programming because I wanted to make my own websites. Back then all it took was two files, an <code>index.html</code> and a style sheet. I recently decided to take up blogging again and started looking around for a simple static site generator. There are a couple of reasons why I avoided some other approaches.</p><ul><li>I have had negative experiences with Wordpress that make me not want to use it again. Plus it is way more sophisticated than I need for a simple place to publish some thoughts.</li><li>I want unambiguous ownership of my blog. Less important but also relevant, I want to easily be able to control how it looks. This rules out quite a few popular batteries-included blogging platforms.</li><li>I do not want to setup (or pay for) a server somewhere to serve a simple website with only static pages.</li></ul><p>I've been writing software for the internet for some years now, but it's been a while since I worked on anything like what we think of as a normal website. When I started looking into how those are made these days, I was surprised to find mostly complicated, bloated frameworks that nearly completely abstract away the basic task of generating HTML.</p><p>It doesn't take multiple new languages, frameworks, or build tools to make a really simple website.</p><h2>Content is not software</h2><p>Frameworks are for people building sophisticated software that happens to run in a browser. There is no need for them if all you want to do is put some content on the internet. I will argue that if your main goal is publishing content you don't even need JavaScript at all.</p><p>JavaScript frameworks mostly help by allowing us to write non-trivial software in a language less terrible than JavaScript itself. They can also help with things like managing state, reacting to user input, and communicating asynchronously with a server to get new information onto a page without needing to refresh the whole thing. None of these challenges are present when the main purpose of a website is to display static information.</p><p>For that, all we should need is a language to markup our plain words into something a browser can render, like HTML.</p><h2>A simple static site generator</h2><p>I prefer writing software over configuring software, and I resent things that are more complicated than they need to be. I'm a minimalist by nature and I am against the direction our industry is currently headed -- shipping bloated and buggy software by the ton -- but that's a topic for another day.</p><p>After some investigation and frustration trying to do simple things, like edit canned templates or change the source and structure of my content, I of course decided to write my own static site generator, like any sane developer would do.</p><p>For now all it does is convert my posts (which I write in markdown) into HTML and insert that HTML into a template, then put those files in the right place. As my blog grows I'll add more features, and maybe even make it useful enough for someone else to use someday. For now it's a simple solution that works on my machine, and was definitely more enjoyable for me to write than was faffing with configuring the other tools I tried.</p><h2>A plea for simplicity</h2><p>I get that a lot of people are not making simple websites anymore. There is some seriously sophisticated software running in browsers now, which I understand is the reason for the proliferation of JavaScript frameworks and build tools currently plaguing our work lives.</p><p>A lot of people are still simply publishing content to the internet, though, and we seem to have forgotten what a website is really made of. It's just HTML (which is supposed to semantically mark up content to describe its <em>meaning and structure</em>), and optional styling with CSS (to describe it's <em>appearance</em>). These languages are not so complicated to write that we need complex frameworks that add a dozen more layers between the content and the final static pages. If all you want is to put some information on the internet, see if an old fashioned HTML file might be all you need.</p>
+      <p>I first got into programming because I wanted to make my own websites. Back then
+all it took was two files, an <code>index.html</code> and a style sheet. I recently decided
+to take up blogging again and started looking around for a simple static site
+generator. There are a couple of reasons why I avoided some other approaches.</p>
+<ul>
+<li>I have had negative experiences with Wordpress that make me not want to use it
+again. Plus it is way more sophisticated than I need for a simple place to
+publish some thoughts.</li>
+<li>I want unambiguous ownership of my blog. Less important but also relevant, I
+want to easily be able to control how it looks. This rules out quite a few
+popular batteries-included blogging platforms.</li>
+<li>I do not want to setup (or pay for) a server somewhere to serve a simple
+website with only static pages.</li>
+</ul>
+<p>I've been writing software for the internet for some years now, but it's been a
+while since I worked on anything like what we think of as a normal website. When
+I started looking into how those are made these days, I was surprised to find
+mostly complicated, bloated frameworks that nearly completely abstract away the
+basic task of generating HTML.</p>
+<p>It doesn't take multiple new languages, frameworks, or build tools to make a
+really simple website.</p>
+<h2>Content is not software</h2>
+<p>Frameworks are for people building sophisticated software that happens to run in
+a browser. There is no need for them if all you want to do is put some content
+on the internet. I will argue that if your main goal is publishing content you
+don't even need JavaScript at all.</p>
+<p>JavaScript frameworks mostly help by allowing us to write non-trivial software
+in a language less terrible than JavaScript itself. They can also help with
+things like managing state, reacting to user input, and communicating
+asynchronously with a server to get new information onto a page without needing
+to refresh the whole thing. None of these challenges are present when the main
+purpose of a website is to display static information.</p>
+<p>For that, all we should need is a language to markup our plain words into
+something a browser can render, like HTML.</p>
+<h2>A simple static site generator</h2>
+<p>I prefer writing software over configuring software, and I resent things that
+are more complicated than they need to be. I'm a minimalist by nature and I am
+against the direction our industry is currently headed -- shipping bloated and
+buggy software by the ton -- but that's a topic for another day.</p>
+<p>After some investigation and frustration trying to do simple things, like edit
+canned templates or change the source and structure of my content, I of course
+decided to write my own static site generator, like any sane developer would do.</p>
+<p>For now all it does is convert my posts (which I write in markdown) into HTML
+and insert that HTML into a template, then put those files in the right place.
+As my blog grows I'll add more features, and maybe even make it useful enough
+for someone else to use someday. For now it's a simple solution that works on my
+machine, and was definitely more enjoyable for me to write than was faffing with
+configuring the other tools I tried.</p>
+<h2>A plea for simplicity</h2>
+<p>I get that a lot of people are not making simple websites anymore. There is some
+seriously sophisticated software running in browsers now, which I understand is
+the reason for the proliferation of JavaScript frameworks and build tools
+currently plaguing our work lives.</p>
+<p>A lot of people are still simply publishing content to the internet, though, and
+we seem to have forgotten what a website is really made of. It's just HTML
+(which is supposed to semantically mark up content to describe its <em>meaning
+and structure</em>), and optional styling with CSS (to describe it's
+<em>appearance</em>). These languages are not so complicated to write that we
+need complex frameworks that add a dozen more layers between the content and the
+final static pages. If all you want is to put some information on the internet,
+see if an old fashioned HTML file might be all you need.</p>
+
     </main>
 
     <footer>
-        <a href="https://twitter.com/kiraemclean"><svg fill="#8a8a8a" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path d="M 24 4.300781 C 23.101563 4.699219 22.199219 5 21.199219 5.101563 C 22.199219 4.5 23 3.5 23.398438 2.398438 C 22.398438 3 21.398438 3.398438 20.300781 3.601563 C 19.300781 2.601563 18 2 16.601563 2 C 13.898438 2 11.699219 4.199219 11.699219 6.898438 C 11.699219 7.300781 11.699219 7.699219 11.800781 8 C 7.699219 7.800781 4.101563 5.898438 1.699219 2.898438 C 1.199219 3.601563 1 4.5 1 5.398438 C 1 7.101563 1.898438 8.601563 3.199219 9.5 C 2.398438 9.398438 1.601563 9.199219 1 8.898438 C 1 8.898438 1 8.898438 1 9 C 1 11.398438 2.699219 13.398438 4.898438 13.800781 C 4.5 13.898438 4.101563 14 3.601563 14 C 3.300781 14 3 14 2.699219 13.898438 C 3.300781 15.898438 5.101563 17.300781 7.300781 17.300781 C 5.601563 18.601563 3.5 19.398438 1.199219 19.398438 C 0.800781 19.398438 0.398438 19.398438 0 19.300781 C 2.199219 20.699219 4.800781 21.5 7.5 21.5 C 16.601563 21.5 21.5 14 21.5 7.5 C 21.5 7.300781 21.5 7.101563 21.5 6.898438 C 22.5 6.199219 23.300781 5.300781 24 4.300781"/></svg></a>
+        <a href="https://twitter.com/kiraemclean"><svg fill="#8a8a8a" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path d="M 24 4.300781 C 23.101563 4.699219 22.199219 5 21.199219 5.101563 C 22.199219 4.5 23 3.5 23.398438 2.398438 C 22.398438 3 21.398438 3.398438 20.300781 3.601563 C 19.300781 2.601563 18 2 16.601563 2 C 13.898438 2 11.699219 4.199219 11.699219 6.898438 C 11.699219 7.300781 11.699219 7.699219 11.800781 8 C 7.699219 7.800781 4.101563 5.898438 1.699219 2.898438 C 1.199219 3.601563 1 4.5 1 5.398438 C 1 7.101563 1.898438 8.601563 3.199219 9.5 C 2.398438 9.398438 1.601563 9.199219 1 8.898438 C 1 8.898438 1 8.898438 1 9 C 1 11.398438 2.699219 13.398438 4.898438 13.800781 C 4.5 13.898438 4.101563 14 3.601563 14 C 3.300781 14 3 14 2.699219 13.898438 C 3.300781 15.898438 5.101563 17.300781 7.300781 17.300781 C 5.601563 18.601563 3.5 19.398438 1.199219 19.398438 C 0.800781 19.398438 0.398438 19.398438 0 19.300781 C 2.199219 20.699219 4.800781 21.5 7.5 21.5 C 16.601563 21.5 21.5 14 21.5 7.5 C 21.5 7.300781 21.5 7.101563 21.5 6.898438 C 22.5 6.199219 23.300781 5.300781 24 4.300781"/></svg><small>Follow me on Twitter<small></a>
         <small>&copy; Kira McLean</small>
     </footer>  </body>
 </html>

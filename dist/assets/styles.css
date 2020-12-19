@@ -3,6 +3,7 @@
   --white: #fbfbfb;
   --black: #313131;
   --grey: #8a8a8a;
+  --medium-grey: #bbbbbb;
   --light-grey: #e1e1e1;
 }
 
@@ -47,6 +48,14 @@ footer {
 
 footer small {
   font-size: small;
+}
+
+footer a {
+  display: flex;
+}
+
+footer svg {
+  margin-right: 0.35rem;
 }
 
 a {
@@ -112,4 +121,36 @@ dt {
 html {
   visibility: visible;
   opacity: 1;
+}
+
+code {
+  background: var(--light-grey);
+  border-radius: 5px;
+  box-shadow: 2px 2px var(--medium-grey);
+  font-family: Menlo, "Lucida Sans Typewriter", monospace;
+  font-size: 0.85rem;
+  margin: 0 0.1rem;
+  padding: 0.1rem 0.45rem;
+}
+
+small code {
+  font-size: 90%;
+}
+
+pre {
+  background: var(--light-grey);
+  border-radius: 5px;
+  box-shadow: 2px 2px var(--medium-grey);
+  font-size: 0.7rem;
+  overflow-x: auto;
+  padding: 0.5rem 1rem;
+}
+
+pre code {
+  box-shadow: unset;
+  padding: 0;
+}
+
+li > p {
+  margin-bottom: 0;
 }
