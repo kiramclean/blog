@@ -16,6 +16,7 @@ Some parts are pieced together from other partial guides or longer blog posts, s
 - An account with [Backblaze](https://www.backblaze.com/b2/cloud-storage.html)
 - An account with [Healthchecks.io](https://healthchecks.io/)
 - Your ssh key 
+- $75/year. I pay $5/month for the server I use, $5/year for the domain name ($5.16 actually), and CAD$10/year for carbon offsets.
 
 ## 1. Set up a server running Ubuntu and set up ssh access for yourself
 
@@ -220,9 +221,10 @@ I know carbon offsetting is a [long and complicated topic](https://davidsuzuki.o
 
 ### Get notified when you're approaching your storage limit
 
-If you choose the cheapest Linode server like I did it doesn't come with much storage, and depending on how much data you have and how many backups you're leaving on the server you might run it out of storage pretty quickly. There's an app called "Quota warning" in the monitoring category you can install to get notified if you're approaching your server's storage limits. You can configure when and how it notifies you in "Additional settings" after it's installed. 
+If you choose the cheapest Linode server like I did it doesn't come with much storage, and depending on how much data you have and how many backups you're leaving on the server you might run it out of storage pretty quickly. There's an app called "Quota warning" in the monitoring category you can install to get notified if you're approaching your server's storage limits. You can configure when and how it notifies you in "Additional settings** after it's installed. 
 
 ---
 
 That's it! I hope this helps someone avoid hours of searching through documentation, blog posts, and outdated forums. Good luck!
 
+**Discuss this post on [Hacker News](https://news.ycombinator.com/item?id=25481465) or [Dev.to](https://dev.to/kiraemclean/how-to-set-up-your-own-nextcloud-server-2hc3)**
