@@ -165,7 +165,7 @@ ncbackup ALL=(ALL) NOPASSWD: /usr/sbin/ncbackup.sh
 
 ## 8. Schedule and monitor your backups
 
-- Make yourself a healthcheck endpoint at [healthchecks.io](https://healthchecks.io) and copy the ping url
+- Make yourself a healthcheck at [healthchecks.io](https://healthchecks.io) and copy the ping url
 - `sudo crontab -u ncbackup -e`
 - Copy this to the bottom of the file: `0 2 * * * sudo /usr/sbin/ncbackup.sh && curl -fsS -m 10 --retry 5 -o /dev/null <your-ping-url>`
 
@@ -221,10 +221,10 @@ I know carbon offsetting is a [long and complicated topic](https://davidsuzuki.o
 
 ### Get notified when you're approaching your storage limit
 
-If you choose the cheapest Linode server like I did it doesn't come with much storage, and depending on how much data you have and how many backups you're leaving on the server you might run it out of storage pretty quickly. There's an app called "Quota warning" in the monitoring category you can install to get notified if you're approaching your server's storage limits. You can configure when and how it notifies you in "Additional settings** after it's installed. 
+If you choose the cheapest Linode server like I did it doesn't come with much storage, and depending on how much data you have and how many backups you're leaving on the server you might run it out of storage pretty quickly. There's an app called "Quota warning" in the monitoring category you can install to get notified if you're approaching your server's storage limits. You can configure when and how it notifies you in "Additional settings" after it's installed. 
 
 ---
 
 That's it! I hope this helps someone avoid hours of searching through documentation, blog posts, and outdated forums. Good luck!
 
-**Discuss this post on [Hacker News](https://news.ycombinator.com/item?id=25481465) or [Dev.to](https://dev.to/kiraemclean/how-to-set-up-your-own-nextcloud-server-2hc3)**
+**Discuss this post on [Hacker News](https://news.ycombinator.com/item?id=25481465), [Dev.to](https://dev.to/kiraemclean/how-to-set-up-your-own-nextcloud-server-2hc3) or [Reddit](https://www.reddit.com/r/NextCloud/comments/kgdpaw/i_set_up_my_own_nextcloud_instance_as_part_of_my/)**

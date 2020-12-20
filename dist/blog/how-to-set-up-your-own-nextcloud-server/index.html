@@ -200,7 +200,7 @@ ncbackup ALL=(ALL) NOPASSWD: /usr/sbin/ncbackup.sh
 </p>
 <h2>8. Schedule and monitor your backups</h2>
 <ul>
-<li>Make yourself a healthcheck endpoint at <a href="https://healthchecks.io">healthchecks.io</a> and copy the ping url</li>
+<li>Make yourself a healthcheck at <a href="https://healthchecks.io">healthchecks.io</a> and copy the ping url</li>
 <li><code>sudo crontab -u ncbackup -e</code></li>
 <li>Copy this to the bottom of the file: <code>0 2 * * * sudo /usr/sbin/ncbackup.sh &amp;&amp; curl -fsS -m 10 --retry 5 -o /dev/null &lt;your-ping-url&gt;</code></li>
 </ul>
@@ -261,10 +261,10 @@ ncbackup ALL=(ALL) NOPASSWD: /usr/sbin/ncbackup.sh
 </small>
 </p>
 <h3>Get notified when you're approaching your storage limit</h3>
-<p>If you choose the cheapest Linode server like I did it doesn't come with much storage, and depending on how much data you have and how many backups you're leaving on the server you might run it out of storage pretty quickly. There's an app called &quot;Quota warning&quot; in the monitoring category you can install to get notified if you're approaching your server's storage limits. You can configure when and how it notifies you in &quot;Additional settings** after it's installed.</p>
+<p>If you choose the cheapest Linode server like I did it doesn't come with much storage, and depending on how much data you have and how many backups you're leaving on the server you might run it out of storage pretty quickly. There's an app called &quot;Quota warning&quot; in the monitoring category you can install to get notified if you're approaching your server's storage limits. You can configure when and how it notifies you in &quot;Additional settings&quot; after it's installed.</p>
 <hr />
 <p>That's it! I hope this helps someone avoid hours of searching through documentation, blog posts, and outdated forums. Good luck!</p>
-<p><strong>Discuss this post on <a href="https://news.ycombinator.com/item?id=25481465">Hacker News</a> or <a href="https://dev.to/kiraemclean/how-to-set-up-your-own-nextcloud-server-2hc3">Dev.to</a></strong></p>
+<p><strong>Discuss this post on <a href="https://news.ycombinator.com/item?id=25481465">Hacker News</a>, <a href="https://dev.to/kiraemclean/how-to-set-up-your-own-nextcloud-server-2hc3">Dev.to</a> or <a href="https://www.reddit.com/r/NextCloud/comments/kgdpaw/i_set_up_my_own_nextcloud_instance_as_part_of_my/">Reddit</a></strong></p>
 
     </main>
 
