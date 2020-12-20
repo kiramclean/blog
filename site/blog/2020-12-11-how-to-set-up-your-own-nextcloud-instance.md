@@ -5,7 +5,7 @@ date: 2020-12-19
 
 One of my goals for 2020 was to stop using Google's products. There are a lot of reasons why, but that's not the point of this post. I found out about Nextcloud last month and it turns out it's a great replacement for a lot of Google. I don't actually use all of its features, but I've migrated my calendar, reminders, contacts, bookmarks, video calls, photos, and news feeds and I'm really happy with it so far.
 
-There are a lot of companies that will host Nextcloud for you where you just sign up for an account like anything else, but in case you're interested in hosting Nextcloud for yourself this post is basically a brain dump of how I did it that. It took me a while to cobble together all the pieces I needed to get everything working from end to end, so I'm hoping this might save someone else from having to do the same. If you know your way around servers and Nextcloud already you can just skim the headings like a checklist to make sure you don't forget an important step. But if you want a succinct overview of the actual steps I did and commands I ran, each section contains those details. By the end you'll see how I installed Nextcloud on my own server, secured it, set up backups, and set up external storage for my photos.
+There are a lot of companies that will host Nextcloud for you where you just sign up for an account like anything else, but in case you're interested in hosting Nextcloud for yourself this post is basically a brain dump of how I did that. It took me a while to cobble together all the pieces I needed to get everything working from end to end, so I'm hoping this might save someone else from having to do the same. If you know your way around servers and Nextcloud already you can just skim the headings like a checklist to make sure you don't forget an important step. But if you want a succinct overview of the actual steps I did and commands I ran, each section contains those details. By the end you'll see how I installed Nextcloud on my own server, secured it, set up backups, and set up external storage for my photos.
 
 Some parts are pieced together from other partial guides or longer blog posts, so where relevant the references lead to those sources. This post is more of a quick start with just the essential steps. Anything in `<pointy-brackets>` is meant to be replaced. So the actual command I ran was e.g. `adduser kira`, not `adduser <name>`.
 
@@ -25,7 +25,7 @@ Some parts are pieced together from other partial guides or longer blog posts, s
 - Add your ssh key to the server. There should be a way to do this through the UI where you manage your new server.
 - Copy the IP address of your new server
 
-### 1.1 ssh into your server as the root user and make yourself a new sudo user that can also ssh into the machine <sup>[1](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04)</sup>
+### 1.1. ssh into your server as the root user and make yourself a new sudo user that can also ssh into the machine <sup>[1](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04)</sup>
 
 - `ssh root@<server-ip-address>`
 - `adduser <name>`
@@ -55,7 +55,7 @@ There should be a way to do this in the admin section for your server. On Linode
 - `sudo snap install nextcloud`
 - `sudo nextcloud.manual-install <username> <password>`
 
-## 5. Set up your domain, enable https, and install an auto-updating certificate from lets encrypt
+## 5. Set up your domain, enable https, and install an auto-updating certificate from Let's Encrypt
 
 - `sudo nextcloud.occ config:system:set trusted_domains 1 --value=<your-domain.name>`
 - `sudo nextcloud.enable-https lets-encrypt`
@@ -78,16 +78,16 @@ I managed to forget my password in the time between installing Nextcloud and try
 
 ## 7. Set up backups
 
-### 7.1 Turn on "local" backups
+### 7.1. Turn on "local" backups
 
 - Enable backups for your whole server for a first layer of backups. I did this when I was setting up my Linode (there was a checkbox in the "Optional Add-ons" section for it). Otherwise there's a "Backups" tab in the admin section where you can turn them on. Linode charges $2/months for this.
 
-### 7.2 Set up "offsite" backups
+### 7.2. Set up "offsite" backups
 
-- Install and set up backblaze
-  - Make a bucket in backblaze for your backups
+- Install and set up Backblaze
+  - Make a bucket in Backblaze for your backups
   - Make an app key with access to your backup bucket
-  - Get the backblaze cli and configure it
+  - Get the Backblaze cli and configure it
     - `sudo apt install python3-pip`
     - `sudo pip3 install b2`
     - `sudo b2 authorize_account <keyID>`
@@ -130,8 +130,8 @@ echo "Removing backups older than 5 days..."
 find /home/ncbackup/backups -type f -mtime +5 -delete
 find /home/ncbackup/backups/logs -type f -mtime +5 -delete
 
-# Keep 14 days of backups in backblaze
-echo "Uploading to backblaze..."
+# Keep 14 days of backups in Backblaze
+echo "Uploading to Backblaze..."
 b2 sync --keepDays 14 --replaceNewer /home/ncbackup/backups b2://<your-bucket-name>
 echo "Nextcloud backup completed successfully"
 ```
@@ -176,7 +176,7 @@ This will run your backups once per day at 2am (in your server's timezone, proba
 
 Backups are only useful if you can use them to restore your data. Make sure yours work before you need them. 
 
-To test your entire server backups you can just try restoring the whole server using Linode's (or whoever's) UI. Testing the archived backups we uploaded to backblaze is a little more involved but you'll be glad you know how to do it when you need it.
+To test your entire server backups you can just try restoring the whole server using Linode's (or whoever's) UI. Testing the archived backups we uploaded to Backblaze is a little more involved but you'll be glad you know how to do it when you need it.
 
 - Repeat steps 1-5, except you can just update the records for your domain that's already set up to point to your new server's IP address(es). 
 - Download one of your backups 
