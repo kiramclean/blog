@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kira McLean</title>
+    <link>https://kiramclean.com</link>
+    <description>Kira's thoughts and guides on tech, life, and meaning.</description>
+    <lastBuildDate>Wed, 23 Dec 2020 19:31:30 -0500</lastBuildDate>
+    <atom:link href="https://kiramclean.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <generator>Dynamo v0.0</generator>
+    <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+      <item>
+        <title>How To Set Up Your Own Nextcloud Server</title>
+        <description>&lt;p&gt;One of my goals for 2020 was to stop using Google's products. There are a lot of reasons why, but that's not the point of this post. I found out about Nextcloud last month and it turns out it's a great replacement for a lot of Google. I don't actually use all of its features, but I've migrated my calendar, reminders, contacts, bookmarks, video calls, photos, and news feeds and I'm really happy with it so far.&lt;/p&gt;
+&lt;p&gt;There are a lot of companies that will host Nextcloud for you where you just sign up for an account like anything else, but in case you're interested in hosting Nextcloud for yourself this post is basically a brain dump of how I did that. It took me a while to cobble together all the pieces I needed to get everything working from end to end, so I'm hoping this might save someone else from having to do the same. If you know your way around servers and Nextcloud already you can just skim the headings like a checklist to make sure you don't forget an important step. But if you want a succinct overview of the actual steps I did and commands I ran, each section contains those details. By the end you'll see how I installed Nextcloud on my own server, secured it, set up backups, and set up external storage for my photos.&lt;/p&gt;
+&lt;p&gt;Some parts are pieced together from other partial guides or longer blog posts, so where relevant the references lead to those sources. This post is more of a quick start with just the essential steps. Anything in &lt;code&gt;&amp;lt;pointy-brackets&amp;gt;&lt;/code&gt; is meant to be replaced. So the actual command I ran was e.g. &lt;code&gt;adduser kira&lt;/code&gt;, not &lt;code&gt;adduser &amp;lt;name&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;What this list assumes you already have&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A domain name. I got mine from &lt;a href=&quot;https://namecheap.com&quot;&gt;Namecheap&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;An account with a cloud server provider. I use &lt;a href=&quot;https://www.linode.com/choosing-linode/&quot;&gt;Linode&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;An account with &lt;a href=&quot;https://www.backblaze.com/b2/cloud-storage.html&quot;&gt;Backblaze&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;An account with &lt;a href=&quot;https://healthchecks.io/&quot;&gt;Healthchecks.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Your ssh key&lt;/li&gt;
+&lt;li&gt;$75/year. I pay $5/month for the server I use, $5/year for the domain name ($5.16 actually), and CAD$10/year for carbon offsets.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;1. Set up a server running Ubuntu and set up ssh access for yourself&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spin up a new server with your cloud provider. I use a &amp;quot;nanode&amp;quot;, the smallest server available from Linode, with 1GB of RAM and 25GB of storage, which is plenty more than &lt;a href=&quot;https://docs.nextcloud.com/server/16/admin_manual/installation/system_requirements.html#server&quot;&gt;Nextcloud's minimum specs&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Select an operating system that can install &lt;a href=&quot;https://snapcraft.io/docs/installing-snapd&quot;&gt;snap packages&lt;/a&gt;. I'm using Ubuntu 20.04 (LTS). Nextcloud recommends at least either Ubuntu 18.04 LTS or Red Hat Enterprise Linux 7.&lt;/li&gt;
+&lt;li&gt;Add your ssh key to the server. There should be a way to do this through the UI where you manage your new server.&lt;/li&gt;
+&lt;li&gt;Copy the IP address of your new server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.1. ssh into your server as the root user and make yourself a new sudo user that can also ssh into the machine &lt;sup&gt;&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ssh root@&amp;lt;server-ip-address&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;adduser &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;usermod -aG sudo &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rsync --archive --chown=&amp;lt;name&amp;gt;:&amp;lt;name&amp;gt; ~/.ssh /home/&amp;lt;name&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Close this ssh session and log in as your new user to make sure it works:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;logout&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ssh &amp;lt;name&amp;gt;@&amp;lt;server-ip-address&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Leave this ssh session open. The rest of the commands below are meant to be run on your server, unless otherwise stated.&lt;/p&gt;
+&lt;h2&gt;2. Point your new server to your custom domain&lt;/h2&gt;
+&lt;p&gt;There should be a way to do this in the admin section for your server. On Linode's there's a &amp;quot;Domains&amp;quot; section in the left admin menu. From there I clicked &amp;quot;Add a Domain&amp;quot; in the top right, then filled in the domain name, my email address, and selected &amp;quot;Insert default records from one of my Linodes&amp;quot; from the &amp;quot;Insert Defaults Records&amp;quot; dropdown, then I selected my new Nextcloud server from the list of Linodes. The steps might be slightly different depending what cloud server provider you're using. By the end you need DNS records pointing your domain name to your Nextcloud server. If you did this through Linode (or whatever you're using), you'll also need to update the nameservers with your domain registar.&lt;/p&gt;
+&lt;h2&gt;3. Set up a basic firewall&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo ufw allow OpenSSH&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo ufw allow https&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo ufw allow http&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo ufw enable&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;4. Install Nextcloud&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo snap install nextcloud&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo nextcloud.manual-install &amp;lt;username&amp;gt; &amp;lt;password&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;5. Set up your domain, enable https, and install an auto-updating certificate from Let's Encrypt&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo nextcloud.occ config:system:set trusted_domains 1 --value=&amp;lt;your-domain.name&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo nextcloud.enable-https lets-encrypt&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;6. Enable 2FA on your Nextcloud account &lt;sup&gt;*&lt;/sup&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Log in to your new personal cloud at the domain you configured using the username and password you chose above and install the 2FA app
+&lt;ul&gt;
+&lt;li&gt;Click on your initial in the top right corner of the Nextcloud dashboard and select &amp;quot;Apps&amp;quot;&lt;/li&gt;
+&lt;li&gt;In the left side bar click on &amp;quot;Security&amp;quot;, then search for the &amp;quot;Two-Factor TOTP Provider&amp;quot; app&lt;/li&gt;
+&lt;li&gt;Click &amp;quot;Download and enable&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Set up 2FA with this newly installed app
+&lt;ul&gt;
+&lt;li&gt;Click on your initial in the top right corner and select &amp;quot;Settings&amp;quot;&lt;/li&gt;
+&lt;li&gt;In the left sidebar, click on &amp;quot;Security&amp;quot; (in the &amp;quot;Personal&amp;quot; section) then check the &amp;quot;Enable TOTP&amp;quot; box and follow the instructions to set up 2FA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I managed to forget my password in the time between installing Nextcloud and trying to log in for the first time. If that happens to you, you can reset it by running &lt;code&gt;sudo nextcloud.occ user:resetpassword &amp;lt;username&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;small&gt;* Doing this means you will be required to generate &amp;quot;app passwords&amp;quot; in order to log in to your Nextcloud account in third party apps or other devices (to use Nextcloud to sync your calendar or reminders to your phone, for example.) There's a tiny box with a button that says &amp;quot;Create new app password&amp;quot; at the bottom of the &amp;quot;Security&amp;quot; admin section (under &amp;quot;Personal&amp;quot;, not &amp;quot;Administration&amp;quot;) where you can do that.&lt;/small&gt;&lt;/p&gt;
+&lt;h2&gt;7. Set up backups&lt;/h2&gt;
+&lt;h3&gt;7.1. Turn on &amp;quot;local&amp;quot; backups&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable backups for your whole server for a first layer of backups. I did this when I was setting up my Linode (there was a checkbox in the &amp;quot;Optional Add-ons&amp;quot; section for it). Otherwise there's a &amp;quot;Backups&amp;quot; tab in the admin section where you can turn them on. Linode charges $2/months for this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;7.2. Set up &amp;quot;offsite&amp;quot; backups&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install and set up Backblaze&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make a bucket in Backblaze for your backups&lt;/li&gt;
+&lt;li&gt;Make an app key with access to your backup bucket&lt;/li&gt;
+&lt;li&gt;Get the Backblaze cli and configure it
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo apt install python3-pip&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo pip3 install b2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo b2 authorize_account &amp;lt;keyID&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Copy the key secret from the app key you just made to authorize the Backblaze cli&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new user to run the backups and disable password access for it, for security &lt;sup&gt;&lt;a href=&quot;https://kevq.uk/how-to-backup-nextcloud/&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo adduser ncbackup&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo usermod -s /sbin/nologin ncbackup&lt;/code&gt; &lt;sup&gt;*&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create directories for the backups and logs&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo mkdir -p /home/ncbackup/backups/logs&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create the backup script and make it runnable &lt;sup&gt;**&lt;/sup&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo touch /usr/sbin/ncbackup.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo chmod +x /usr/sbin/ncbackup.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo vim /usr/sbin/ncbackup.sh&lt;/code&gt; and copy the contents of the backup script below into your new file, or write your own that accomplishes the same things: &lt;sup&gt;***&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/bin/bash
+set -e
+
+DATE=$(date '+%Y-%m-%d')
+
+# Output to a logfile
+exec &amp;amp;&amp;gt; /home/ncbackup/backups/logs/${DATE}.txt
+
+# Export all your config and data from Nextcloud
+echo &amp;quot;Starting Nextcloud export...&amp;quot;
+nextcloud.export
+echo &amp;quot;Export complete&amp;quot;
+
+# Compress backed up folder
+echo &amp;quot;Compressing backup...&amp;quot;
+tar -zcf /home/ncbackup/backups/${DATE}.tar.gz -C /var/snap/nextcloud/common/backups/ .
+echo &amp;quot;Nextcloud backup successfully compressed to /home/ncbackup/backups&amp;quot;
+
+# Remove uncompressed backup data
+rm -rf /var/snap/nextcloud/common/backups/*
+
+# Remove backups and logs older than 5 days
+echo &amp;quot;Removing backups older than 5 days...&amp;quot;
+find /home/ncbackup/backups -type f -mtime +5 -delete
+find /home/ncbackup/backups/logs -type f -mtime +5 -delete
+
+# Keep 14 days of backups in Backblaze
+echo &amp;quot;Uploading to Backblaze...&amp;quot;
+b2 sync --keepDays 14 --replaceNewer /home/ncbackup/backups b2://&amp;lt;your-bucket-name&amp;gt;
+echo &amp;quot;Nextcloud backup completed successfully&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Let the &lt;code&gt;ncbackup&lt;/code&gt; user run the backup script as the root user
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo visudo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Copy this to the end of the file that opens:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Allow ncbackup to run script as sudo
+ncbackup ALL=(ALL) NOPASSWD: /usr/sbin/ncbackup.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;
+  &lt;small&gt;
+  * If you want to undo this for some reason you can run &lt;code&gt;sudo usermod -s /bin/bash ncbackup&lt;/code&gt;
+  &lt;/small&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;small&gt;
+  ** Note this means you will have 6 copies of all your data on your server all the time -- 5 backups and the live versions. The backups are compressed, but it can still add up to a lot of space. Keep an eye on how much storage your server is using. Running it out of space will probably be one of the first issues you run into. I explain how to get notified when that's close to happening at the end.
+  &lt;/small&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;small&gt;
+  *** You don't have to use vim here. Your server probably has nano installed or you can install the editor of your choice. To change the default editor on your server, run &lt;code&gt;sudo update-alternatives --config editor&lt;/code&gt;, and choose the one you want.
+  &lt;/small&gt;
+&lt;/p&gt;
+&lt;h2&gt;8. Schedule and monitor your backups&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Make yourself a healthcheck at &lt;a href=&quot;https://healthchecks.io&quot;&gt;healthchecks.io&lt;/a&gt; and copy the ping url&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo crontab -u ncbackup -e&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Copy this to the bottom of the file: &lt;code&gt;0 2 * * * sudo /usr/sbin/ncbackup.sh &amp;amp;&amp;amp; curl -fsS -m 10 --retry 5 -o /dev/null &amp;lt;your-ping-url&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This will run your backups once per day at 2am (in your server's timezone, probably UTC), but you can set whatever time and frequency you want, just remember to update your healthcheck to match.&lt;/p&gt;
+&lt;h2&gt;9. Test your backups&lt;/h2&gt;
+&lt;p&gt;Backups are only useful if you can use them to restore your data. Make sure yours work before you need them.&lt;/p&gt;
+&lt;p&gt;To test your entire server backups you can just try restoring the whole server using Linode's (or whoever's) UI. Testing the archived backups we uploaded to Backblaze is a little more involved but you'll be glad you know how to do it when you need it.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Repeat steps 1-5, except you can just update the records for your domain that's already set up to point to your new server's IP address(es).&lt;/li&gt;
+&lt;li&gt;Download one of your backups&lt;/li&gt;
+&lt;li&gt;Copy the backup onto your new server. Run this in a terminal on your machine (not in an ssh session with a remote server):
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;scp /local/path/to/your/backup/ &amp;lt;user&amp;gt;@&amp;lt;new-server-ip-address&amp;gt;:~&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;ssh into your new server for the rest of these commands&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unzip, rename, and move the backup to a place where the Nextcloud snap installation will be able to access it, then make the root user the owner
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tar -xvzf &amp;lt;backup-name&amp;gt;.tar.gz&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo mv &amp;lt;backup-data-dir&amp;gt;/ /var/snap/nextcloud/current/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo chown -R root:root /var/snap/nextcloud/current/&amp;lt;backup-data-dir&amp;gt;/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Import your data
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo nextcloud.import /var/snap/nextcloud/current/&amp;lt;backup-data-dir&amp;gt;/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Once it's done, clean up the backup archive
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rm &amp;lt;backup-name&amp;gt;.tar.gz&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This should be all you need to restore your Nextcloud installation. It might take a while for the DNS records to propagate, so if you want to test that your restored cloud is working in the meantime you can check it directly at its IP address if you add that to the list of trusted domains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo nextcloud.occ config:system:set trusted_domains 2 --value=&amp;lt;new-server-ip-address&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note this will only be available over http, so you might get a dramatic warning about security when you visit the ip address directly. To remove the ip address from the list of trusted domains once you're satisfied, run:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo nextcloud.occ config:system:delete trusted_domains 2&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;10. Offset your CO&lt;sub&gt;2&lt;/sub&gt;&lt;/h2&gt;
+&lt;p&gt;It's not going to be clear exactly what the environmental impact of your server is, but it won't be nothing. You can get a rough idea how much CO&lt;sub&gt;2&lt;/sub&gt; your server emits with tools like &lt;a href=&quot;https://www.websitecarbon.com/&quot;&gt;this one&lt;/a&gt;. Then you can buy carbon offsets from a reputable carbon offset vendor, like &lt;a href=&quot;https://www.less.ca/en-ca/tonnes.cfm&quot;&gt;Less&lt;/a&gt;. I spent $10/year to offset half a tonne of CO&lt;sub&gt;2&lt;/sub&gt;.&lt;/p&gt;
+&lt;p&gt;I know carbon offsetting is a &lt;a href=&quot;https://davidsuzuki.org/wp-content/uploads/2019/10/purchasing-carbon-offsets-guide-for-canadians.pdf&quot;&gt;long and complicated topic&lt;/a&gt;, and the environmental impact of computing infrastructure goes way beyond CO&lt;sub&gt;2&lt;/sub&gt; emissions, but the point is just to be aware that doing all this stuff on your computer has potentially negative consequences in the real world and to at least try to minimize them where you can and mitigate them where you can't.&lt;/p&gt;
+&lt;h2&gt;Bonus&lt;/h2&gt;
+&lt;h3&gt;Set up a Backblaze bucket as external storage, e.g. for photos&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Install and enable the &amp;quot;External storage support&amp;quot; app for your Nextcloud instance&lt;/li&gt;
+&lt;li&gt;Go to &amp;quot;Settings&amp;quot; then, under &amp;quot;Administration&amp;quot; in the left side bar (&lt;em&gt;not&lt;/em&gt; under &amp;quot;Personal&amp;quot;), click &amp;quot;External storages&amp;quot;&lt;/li&gt;
+&lt;li&gt;Enter a name for your new folder&lt;sup&gt;*&lt;/sup&gt; and select &amp;quot;Amazon S3&amp;quot; from the &amp;quot;Add storage&amp;quot; dropdown, then fill in the details for your Backblaze bucket and account&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+&lt;small&gt;
+* Make sure the name you give the external storage folder isn't already taken. I called mine &quot;Photos&quot;, which already existed in my Nextcloud files, and it conflicted in strange and surprising ways. If you want to call your external storage folder &quot;Photos&quot; make sure to go delete the &quot;Photos&quot; folder that's already there first. 
+&lt;/small&gt;
+&lt;/p&gt;
+&lt;h3&gt;Get notified when you're approaching your storage limit&lt;/h3&gt;
+&lt;p&gt;If you choose the cheapest Linode server like I did it doesn't come with much storage, and depending on how much data you have and how many backups you're leaving on the server you might run it out of storage pretty quickly. There's an app called &amp;quot;Quota warning&amp;quot; in the monitoring category you can install to get notified if you're approaching your server's storage limits. You can configure when and how it notifies you in &amp;quot;Additional settings&amp;quot; after it's installed.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;That's it! I hope this helps someone avoid hours of searching through documentation, blog posts, and outdated forums. Good luck!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Discuss this post on &lt;a href=&quot;https://news.ycombinator.com/item?id=25481465&quot;&gt;Hacker News&lt;/a&gt;, &lt;a href=&quot;https://dev.to/kiraemclean/how-to-set-up-your-own-nextcloud-server-2hc3&quot;&gt;Dev.to&lt;/a&gt; or &lt;a href=&quot;https://www.reddit.com/r/NextCloud/comments/kgdpaw/i_set_up_my_own_nextcloud_instance_as_part_of_my/&quot;&gt;Reddit&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 18 Dec 2020 19:00:00 -0500</pubDate>
+        <link>https://kiramclean.com/blog/how-to-set-up-your-own-nextcloud-server/</link>
+        <guid isPermaLink="true">https://kiramclean.com/blog/how-to-set-up-your-own-nextcloud-server/</guid>
+      </item>
+      <item>
+        <title>BarCamp Philly 2020</title>
+        <description>&lt;p&gt;I went to a virtual conference this weekend called &lt;a href=&quot;http://2020.barcampphilly.org/&quot;&gt;BarCamp Philly&lt;/a&gt; and had a really good time. The way they ran the conference was new to me. They somehow made the experience feel enjoyable and inspiring, which I thought was really impressive because I've had a hard time getting excited about virtual conferences this year. I've been to a dozen or so since everything got cancelled back in the spring, and this was the first time I stayed until the end and left feeling more energized than drained, fired up with lots of new ideas and inspiration and even a new acquaintance, which is super exciting to me because I find it &lt;em&gt;so hard&lt;/em&gt; to meet new people during a pandemic.&lt;/p&gt;
+&lt;p&gt;This post is about a few of things that I think helped make this conference so much fun to attend. I think it would be really awesome if there were more events like this. Needing to do everything online makes me sad, but one obvious upside is that is makes a whole world of new experiences accessible. I probably wouldn't have travelled to Philadelphia for this conference, but I got to experience it this year remotely.&lt;/p&gt;
+&lt;p&gt;I also want to add a caveat that I am not a conference organizer and am certainly not knocking any other conferences. I have no doubt it takes an incredible amount of work to deliver a conference online, and I'm super grateful for all the amazing people who spent their time (often for free) making all the wonderful conferences I've been to this year happen.&lt;/p&gt;
+&lt;p&gt;I think we're all figuring out how to adapt to this crazy new world and it's just going to take a lot of experimenting and trial and error to land on the best solutions for different types of events. So in the spirit of learning together and optimizing our collective online existence, I wanted to share some things I thought the BarCamp Philly crew did particularly well, and that made my experience as a conference goer so awesome I felt like I couldn't not rave about it here.&lt;/p&gt;
+&lt;h2&gt;Well Organized Discord Server&lt;/h2&gt;
+&lt;p&gt;I had never really used discord until this year, but it seems to be catching on as a popular platform for groups and events. After seeing the way BarCamp Philly used it, I think it's a pretty ideal platform for virtual conferences. These are some ways they used it that I found particularly clever.&lt;/p&gt;
+&lt;h3&gt;Helpful Welcome Messages&lt;/h3&gt;
+&lt;p&gt;With discord it's somehow possible to set up an introduction flow that forces people who are new to the group to see certain information and click buttons to move on to the next steps. I have no idea how it's done, but BarCamp Philly did this and it forced me to read some info about the conference that I'm pretty confident I would have missed if it hadn't been the first (and only) thing visible when I logged in. It simulated the check in experience at a real life conference, which is something I didn't even notice was missing from most other virtual conferences until now.&lt;/p&gt;
+&lt;p&gt;At a real life conference you don't just materialize in the middle of a lecture hall where someone's about to start talking. You show up, pick up a name tag, check out the schedule and get your bearings, then wander about aimlessly for a little while until the talks start. Maybe you even start awkwardly introducing yourself to strangers or bumping into acquaintances.&lt;/p&gt;
+&lt;p&gt;BarCamp Philly's discord welcome flow approximated this nicely. By the time I had clicked through the whole process I knew what to expect from the day, what talks were happening and when, where to go if I just wanted to socialize or relax, and where to get help if I needed it.&lt;/p&gt;
+&lt;p&gt;They also had the conference code of conduct prominently featured in this welcome flow, and it was modelled after this &lt;a href=&quot;https://saferspacesnyc.wordpress.com/&quot;&gt;safer spaces&lt;/a&gt; one, which was really great to see. I always appreciate seeing these kinds of ground rules explicitly laid out up front, myself being in an unfortunate demographic that seems to attract a disproportionate amount of harassment.&lt;/p&gt;
+&lt;h3&gt;Clear Schedule and Sign Posting&lt;/h3&gt;
+&lt;p&gt;One of the main struggles I've had with a lot of my other virtual conference experience is trouble figuring out where to go at what time. To be fair, this is a struggle at a lot of real life conferences, too. But at BarCamp Philly I always knew exactly where to go at what time and was never surprised I was in the wrong talk. Even though having to awkwardly step out of a room because you accidentally went to the wrong one is a slightly less awkward on zoom, it's still not great, so I was happy to have avoided it all day.&lt;/p&gt;
+&lt;p&gt;They had a discord channel for each talk and the channels were grouped by the time the talk was happening, since there were multiple ones in each time slot. At the top of each channel there was a post describing the talk with a useful abstract, links to more info about the speaker, and a list of things to bring or prepare. The next thing in the channel was a fresh zoom link for each session. I really liked how this setup made it super easy to figure out exactly what was happening at what time in which zoom room. That's a lot of stuff to coordinate, especially because there were usually 5 talks happening at the same time! They did an amazing job.&lt;/p&gt;
+&lt;h3&gt;Non-conference-talk Spaces&lt;/h3&gt;
+&lt;p&gt;Another thing I loved about the conference discord server was how they set up some spaces that weren't just about the conference talks themselves. A cool thing about discord that a lot of other chatroom type apps don't have is voice and video channels. They're conceptually similar to regular channels, except when you click on one instead of switching the message feed to show only messages from that channel and giving you a text box to type into, you basically are jumping into an ongoing voice or video call, like a zoom room. I found this a little jarring at first, but then I realized everyone is used to people dropping in and out of these rooms.&lt;/p&gt;
+&lt;p&gt;They had a few channels like this set up to simulate the in-between spaces that are everywhere at real conferences. They had a couple of &amp;quot;hallway&amp;quot; rooms, a &amp;quot;quiet space&amp;quot; room, and even an ongoing &amp;quot;crafting area&amp;quot;, where you could literally bring some crafts to work on to take a little break from conferencing and just hang out with people. There was even an after party where a bunch of people stuck around for some drinks and conversation. I thought these spaces were a really great way to bring some of that conference magic to this new virtual space.&lt;/p&gt;
+&lt;h2&gt;Lots Of Interaction&lt;/h2&gt;
+&lt;p&gt;The best parts of real life conferences always happen between and after the talks. I think this is probably the hardest thing to replicate online, which is probably why it feels like it's the main thing missing from virtual conferences this year. BarCamp Philly did an amazing job giving attendees lots of opportunity to interact, which I think contributed a lot to making the day so enjoyable. There were those informal spaces like I just mentioned, but the way they organized the talks also helped a lot with facilitating interactions.&lt;/p&gt;
+&lt;h3&gt;Small-ish Groups&lt;/h3&gt;
+&lt;p&gt;There were usually 5 or so talks happening at the same time, so each one had a relatively small group of people attending, like a dozen or two-ish. I really like being in these smaller groups. It sometimes feels kind of pointless being one of a few hundred people on a zoom call. This is different than in real life. If you're one of a few hundred people in a lecture hall, you'll still be sitting next to a smaller group of people you can turn to to chat or discuss the talk. To make that work online you kind of just need to have smaller groups.&lt;/p&gt;
+&lt;p&gt;I didn't get the impression the organizers planned any particular group size, but it ended up working out so there were just a few people attending each talk. It's actually possible to have some conversation with like a dozen or so people in the same zoom room, so we had a chance to say a few words before the speaker started and to chat after, which made me feel really nostalgic because it felt pretty close to what it's like in real life.&lt;/p&gt;
+&lt;h3&gt;Well timed talks&lt;/h3&gt;
+&lt;p&gt;Another thing I really appreciated was that the talks only took up about half the time in each time slot. There was tons of time after the speakers finished to ask questions that led to follow up discussions. I love these discussions where you get to hear about what other people think and collectively process the talk. It really makes the message sink in for me. There was also a pretty generous amount of time between each talk, at least 15 mins but sometimes more, which might not sound like a lot I guess but it felt pretty ideal to me. It was enough of a break to make it feel like I wasn't just jumping from one zoom room to the next all day long, but not so long it felt like I wasn't &amp;quot;at&amp;quot; the conference anymore.&lt;/p&gt;
+&lt;h2&gt;Great People&lt;/h2&gt;
+&lt;p&gt;Great speakers and a great community are really what make conferences what they are, and Philadelphia clearly has both in spades. These are, unfortunately, the kinds of things you can't just magic into existence or replicate at just any conference, but I think they're ultimately what made the day so awesome.&lt;/p&gt;
+&lt;h3&gt;Diverse Topics&lt;/h3&gt;
+&lt;p&gt;The talks at BarCamp Philly were a total grab bag of miscellaneous interesting things. I really like these kinds of conferences where there's something for everybody. Obviously a lot of conferences have more focused talks just by their nature. It's totally fair to expect mostly technical clojure talks at a clojure conference, for example. But even at special-interest-specific conferences I think there's a lot of value in having a track of more general interest talks for those times where you need a break from diving deep into technical details or want to expand your world a bit.&lt;/p&gt;
+&lt;p&gt;The speakers at BarCamp Philly covered a lot of what I call &amp;quot;intersection&amp;quot; topics – ones that overlap the boundaries of a few different fields. I love these kinds of talks because they attract people from a wide range of backgrounds who all bring interesting and unique perspectives. I got to learn about Wardley maps for mess management (because who doesn't have several ongoing messes to manage?), web accessibility, goal setting, polymath as a legitimate life path, career development, spam, and working from home. I ended the day with tons of recommendations for books, courses, ted talks, and other resources to dive deeper into the things I found interesting and felt inspired to actually do that after the conversations we got to have after the talks. It's been a long time since I felt motivated to do anything, honestly, so this was huge for me.&lt;/p&gt;
+&lt;h3&gt;Amazing Speakers&lt;/h3&gt;
+&lt;p&gt;One main takeaway for me from this conference is that small, independent creators are where it's at. A lot of the speakers ran their own consultancies or other small businesses and spoke with genuine interest and experience in their thing. I love learning from people who are really into what they're teaching. It makes such a difference.&lt;/p&gt;
+&lt;p&gt;There's also something about small-time self-employed people. They're so down to earth and seem to speak more authentically and authoritatively than a lot of hot shot business or tech people you'll hear at bigger conferences. I honestly felt like I did not hear any bullshit all day, which frankly is too rare these days. At a lot of conferences it feels like there are at least a couple flavours of koolaid being sneakily passed around, but I didn't get that vibe at all at BarCamp Philly. It really felt like I was just learning a ton of useful new things from people who legitimately knew what they were talking about. They were even all super keen to talk about their thing after the talks. It was great.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;This new world of online conferences is hard to navigate, and I can only imagine infinitely harder to create. There are some things I think should be ported from real life to online conferences, like showing everyone around, setting some ground rules, and setting up spaces to meet strangers. There are some other things that I think don't translate all that well and should be left behind for virtual conferences, like big lecture halls and big-ego, big-name star speakers. Then there are some completely new things that we need to figure out how to incorporate and use most effectively for virtual conferences, like discord and zoom and remote-friendly games and digital art.&lt;/p&gt;
+&lt;p&gt;In my humble opinion, BarCamp Philly struck pretty close to an ideal balance between porting the important things from the traditional conference model, ditching the broken ones, and inventing some completely new ways of running things. I really hope they keep at it and would be super excited to go to more events like this one! This conference will definitely be on my radar now and who knows, maybe it'll be a good excuse to visit Philly someday 🙂&lt;/p&gt;
+</description>
+        <pubDate>Sun, 6 Dec 2020 19:00:00 -0500</pubDate>
+        <link>https://kiramclean.com/blog/barcamp-philly-2020/</link>
+        <guid isPermaLink="true">https://kiramclean.com/blog/barcamp-philly-2020/</guid>
+      </item>
+      <item>
+        <title>Christianese For Outsiders</title>
+        <description>&lt;p&gt;When I started hanging in out in religious circles in my late twenties for the first time in my life, I had a lot to learn. Not just about the diversity and depth of different religions, but also about the culture. There are certain words that mean different things in a religious context, and other ones that don't really exist outside of one at all. This a brief overview of some of the language I've picked up over the past few years. These definitions are all based on actual personal experiences from about two dozen different churches/synagogues/groups, so of course as such are entirely anecdotal. This isn't meant to be an academic or universal description of religious terminology, just some new words and ways language is used differently in religious contexts that I found interesting and which might be useful if you ever find yourself in a similar situation.&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;Charismatic&lt;/dt&gt;
+&lt;dd&gt;A branch of Christianity that emphasizes physical experiences of the divine. Expression of these experiences can get pretty wild in some churches, ranging from mild swaying, hands up, crying, etc. all the way to rolling around on the floor, running around the room, screaming incomprehensible noises and the like.&lt;dd&gt;
+&lt;dt&gt;Deconstruction&lt;/dt&gt;
+&lt;dd&gt;A process most people raised in a religious household seem to go through where they realize that the religion they were handed as children is probably not true. Many high profile Christian musicians have been public about their &quot;deconstruction&quot;.&lt;/dd&gt;
+&lt;dt&gt;Ecumenical&lt;/dt&gt;
+&lt;dd&gt;Usually means &quot;affiliated with multiple churches and/or denominations&quot;. These groups are generally a good place to start if you're new to religion because by their nature they don't have a single dogma everyone must believe to fit in.&lt;/dd&gt;
+&lt;dt&gt;Friend&lt;/dt&gt;
+&lt;dd&gt;With a capital &quot;F&quot;, is what Quakers call fellow Quakers. They may well be lower-case &quot;f&quot; friends as well.&lt;/dd&gt;
+&lt;dt&gt;High/Low&lt;/dt&gt;
+&lt;dd&gt;Depends on the context. Translates to &quot;fancy&quot;/&quot;plain&quot; if you're talking about church buildings, &quot;traditional&quot;/&quot;modern&quot; in the context of church services, and &quot;literal&quot;/&quot;metaphoric&quot; for scripture. &quot;High church&quot; services have things like choirs and robes and golden bibles, &quot;low church&quot; services have guitars and projectors and people wearing sandals. The distinction doesn't cut cleanly across denominations. In my experience it seems to depend entirely on the congregation or just what kind of buildings and resources are available. Regarding scripture, a &quot;high view&quot; usually refers to a belief that it is literally from God and is &lt;em&gt;ipso facto&lt;/em&gt; authoritative and &quot;true&quot;. A &quot;low view&quot; usually means someone is comfortable with the fact that it was written by men in the ancient world and isn't necessarily a snapshot of a moment in history when humans had figured out the way everything should be forever.&lt;/dd&gt;
+&lt;dt&gt;Ministry&lt;/dt&gt;
+&lt;dd&gt;Usually refers to work or service someone does that they claim is motivated by their faith or is done in service of their god. Different for Quakers, where it refers to the brief messages that people are moved to deliver during a &quot;meeting for worship&quot; (which is an hour or so of sitting together in silence).&lt;/dd&gt;
+&lt;dt&gt;Reform(ed)&lt;/dt&gt;
+&lt;dd&gt;Depends on whether you're talking about Jews or Christians. Reform Judaism is the progressive version, i.e. where LGBTQ+ folks are welcome and women are equal. Reformed Christianity is decidedly un-progressive, the result of a 16th century backlash against Catholic corruption and hasn't progressed much since (which they talk about as a positive thing). The names kind of say it all. &quot;Reform&quot; Judaism emphasizes the evolving nature of faith and participates in its ever-continuing &lt;em&gt;reform&lt;/em&gt;ing. &quot;Reformed&quot; Christianity, past tense, says the Catholic church was wrong but by God's grace they figured out the one true answer and now just need to stick to it. Westboro Baptist Church is a Reformed church, as an example of where that kind of thinking leads.&lt;/dd&gt;
+&lt;dt&gt;Small group/home group/community group/life group/supper group&lt;/dt&gt;
+&lt;dd&gt;Literally a small group of people, usually from the same church, who meet up regularly some time other than Sunday morning. The format varies wildly. Sometimes it's really just a group of friends who share meals, more culty churches seem to use these to indoctrinate newcomers, though. In my experience it's hard to tell what you're going to get beforehand -- tread carefully.&lt;/dd&gt;
+&lt;dt&gt;Worship&lt;/dt&gt;
+&lt;dd&gt;Depends on the context. If a Protestant invites you to &quot;worship night&quot; it's a concert; worship means music. If it's a Catholic it may be singing (more likely a choir than a band) but could also be an invitation to kneel in front of the Eucharist (a cracker blessed by a priest which some people believe is Jesus) and pray. If it's a Quaker they're inviting you to sit in silence, probably for a long time, like an hour. Jewish worship usually looks like chanting ancient prayers, but they don't call it that.&lt;/dd&gt;
+&lt;dt&gt;Unchurched&lt;/dt&gt;
+&lt;dd&gt;Usually just means &quot;non-religious&quot;, but also used in a semi-perjorative way to refer to other people who are very much &quot;churched&quot; yet believe differently or don't participate in institutional religion as much or in the same way.&lt;/dd&gt;
+&lt;/dl&gt;
+</description>
+        <pubDate>Thu, 29 Oct 2020 20:00:00 -0400</pubDate>
+        <link>https://kiramclean.com/blog/christianese-for-outsiders/</link>
+        <guid isPermaLink="true">https://kiramclean.com/blog/christianese-for-outsiders/</guid>
+      </item>
+      <item>
+        <title>An Atheist Tries Religion</title>
+        <description>&lt;p&gt;I grew up as an outsider to religion. I never considered it a worthwhile pursuit and spent quite a few years as an outspoken critic. As an adult I began to explore it for myself, and I now have what I would count as a spiritual life. I still find most of what religions teach very hard to believe, but I've also found a lot of value in them. My secular education left me desperately unprepared for the hardships of adulthood and, like many people who turn to religion, when life sent me seeking answers I ended up in church. Spoiler alert: I didn't find any answers, but I did find wisdom and traditions that I now believe have great potential.&lt;/p&gt;
+&lt;p&gt;I've told my story dozens of times, but I'm sharing it here partially to fill in some details that inevitably get left out when I have three minutes to answer the question &amp;quot;What brought you here?&amp;quot;, and partly as a record for my future self of where I'm at in this moment.&lt;/p&gt;
+&lt;h2&gt;Negativity and antagonism&lt;/h2&gt;
+&lt;p&gt;It's hard to overstate how antagonistic I was toward religion before all this began. I spent my early twenties becoming an enthusiastic disciple of the New Atheists. I read very nearly everything Christopher Hitchens, Sam Harris, and Richard Dawkins ever wrote, watched hundreds of hours of recordings of them eviscerating fundamentalist believers on YouTube, and spent more time than that arguing in their style with actual people -- mostly on the internet but some face to face, mostly strangers but not all.&lt;/p&gt;
+&lt;p&gt;I still think they're right about a lot of things, but I realize now that what they criticize is really a caricature of religion. I'll get into what we agree on some other time, but basically where I realized they're wrong is in their wholesale dismissal of faith in all its manifestations. Not all faith is delusional or dangerous. By responding to bad theology with aggressive and contemptuous atheism, we miss out on a world of spiritual pursuits that can be at once enriching, life-giving, and mind-opening. That world is where humanity has found solace and inspiration from the beginning, and it's frankly a waste of time to completely discard it and try to build a suitable secular replacement when we inevitably end up needing solace and inspiration ourselves. I'm now convinced that that world is worth approaching with more nuance, if also some caution and a level head.&lt;/p&gt;
+&lt;h2&gt;Meaningful conversations&lt;/h2&gt;
+&lt;p&gt;When I was 23 I went on a trip to Israel with a few dozen other young people from Jewish backgrounds and for the first time in my life had conversations about religion and god that did not seem absurd to me. Our itinerary included many structured conversations and loads of time to interact and talk informally. Those conversations were my first introduction to some ways of thinking about god that were much harder to dismiss than the notion of a capricious, racist, homophobic megalomaniac in the sky.&lt;/p&gt;
+&lt;p&gt;These people were not arguing over what the creator of the universe wants us to eat or wear, or what kinds of sex we're allowed to have with whom; they were talking about the things that mattered most to me. Things like how to get along with family despite differences, how to build community across cultural divides, how to cope with loss and injustice, and what values should inform the crucial decisions we would be making over the course of the next decade. These were exactly the kinds of things I wanted to talk about, and it turns out the Jewish tradition has a lot to say.&lt;/p&gt;
+&lt;h2&gt;Experiencing a holy place&lt;/h2&gt;
+&lt;p&gt;Our trip also included a visit to the Western Wall. I had low expectations but was intrigued by how compelling other people found this place. I wrote my sorrows, hopes, and dreams on a little piece of paper the morning of the visit in preparation, and when we got there I waded into the crowd with the rest of the group. I found it fascinating that people travel from every corner of the earth to touch this wall, and that day was no different. I stood amongst hundreds of my fellow humans, many of whom were clearly having a very emotional time, impressed and slightly unnerved by how freely they expressed what they were experiencing.&lt;/p&gt;
+&lt;p&gt;When it came my turn to approach the wall, I was struck by how soothing it was to imagine the possibility that something or someone out there cared about the nonsense complaints and requests that were written on my little piece of paper. I found a little crack in the wall to slip the note into, then just stood there for a while. I thought about the millions of people who had stood before me in that same place over thousands of years, giving anonymous expression to their most profound inner commotion. I realized then that I had been missing out.&lt;/p&gt;
+&lt;p&gt;Whatever ways the modern world had messed up religion, there was at least some minuscule piece of it that I wanted. I didn't want to believe that I was just looking at yet another old stone wall. That was a special place, if only for the magnitude of human hardship and desire that had been revealed there. Probably no other location on earth has had such intimate access to the depths of the human psyche. It was like every one of the millions of prayers that had been set free because of that wall still lingered in the air, and I got to add mine to the pile, communing with generations of believers before me in the hope that there's a god out there to hear us.&lt;/p&gt;
+&lt;h2&gt;Finding community and a faith of my own&lt;/h2&gt;
+&lt;p&gt;A couple of years later a friend introduced me to a more conventional style of prayer, the kind where you say things out loud with your eyes closed as though you're addressing an actual extra person in the room. I found it extremely uncomfortable and awkward at first, but I immediately felt its benefits, even if it took a while for anything resembling faith to grow out of that initial positive impression.&lt;/p&gt;
+&lt;p&gt;It's like believing we're speaking to god and not each other makes it acceptable to express the realest, rawest emotions we have, and simultaneously gives them immunity from criticism. It removes these and many other psychological barriers to being vulnerable and open in the presence of other people. I haven't shared any other experience with people that so quickly helps a group of complete strangers get comfortable with each other, let alone build meaningful relationships. I've since taken up prayer as part of my routine, and do happen to believe that I'm not just talking to myself.&lt;/p&gt;
+&lt;p&gt;I was going through some personal hardship around the same time as all this, the kind of thing that makes you question what you're doing with your life. I was nostalgic for the conversations I had in Israel and in a season of many new beginnings anyway, so I decided to seek a community to explore my spirituality with.&lt;/p&gt;
+&lt;p&gt;I didn't feel capable of belief in the supernatural or physically impossible, so I didn't have high hopes. My suspicions were confirmed that this is in fact a nonstarter in some faith communities, but it turns out it's far from an absolute requirement in many. I found welcoming homes all over the spiritual map in my city, full of other seekers also unsure what to make of some of religion's more absurd truth claims. I'm still somewhat of a spiritual nomad, but I've found home at one point or another in a Reform Jewish synagogue, a community centre kitchen amongst a circle of Quakers, an Ignatian spirituality centre, and most recently with some progressive Protestant Christians on zoom.&lt;/p&gt;
+&lt;p&gt;I try to be honest about where I'm coming from and pretty much always feel extremely uncomfortable and like a huge fraud when the more worshippy parts of religious services begin, but I've been going to multiple faith-centred meetings every week for about two and a half years now, and have found the benefits of spiritual growth far outweigh the awkward and uncomfortable feelings that come with partaking in religious observances that don't always resonate with me.&lt;/p&gt;
+&lt;h2&gt;&amp;quot;Spiritual, not religious&amp;quot;&lt;/h2&gt;
+&lt;p&gt;That's a cliché I've heard many people use to describe themselves throughout my journey, and so far I think it's also the most accurate description of my own faith. I have a rich prayer life and regularly attend religious services, but I find the structure and dogma of all the religions I've tried so far suffocating rather than satisfying, so I don't feel comfortable yet adopting any individual one as my own. I'm still working through what role I think is appropriate for an organization like a church to have in society and in my life, but I do think at its best religion nurtures a part of us that has been perilously abandoned by secular society. At this point I consider myself a disciple of the Jewish and Christian traditions, having found valuable insights into the art of living in both.&lt;/p&gt;
+&lt;p&gt;Another major hurdle I still haven't mentally overcome is the pretty mixed track record of religion. I know now that there's a lot more to it than sociopaths conning the poor into giving up their grocery money and brainwashed followers tearing apart families and livelihoods over tactless obedience to draconian laws. I spent too much time learning about the ugly sides of religion before changing my mind about it, and so far that's still preventing me from just pretending like it's no big deal for them to continue to exist without acknowledging and apologizing for their crimes.&lt;/p&gt;
+&lt;p&gt;I realize that that kind of repentance and reconciliation takes time, and I do know many religious groups are undertaking the difficult work of repairing the world. I just wish so many of the reasons it needs repairing weren't their fault in the first place.&lt;/p&gt;
+&lt;h2&gt;Figuring out what religion could look like&lt;/h2&gt;
+&lt;p&gt;Despite all of these hangups, I'm still pursuing spiritual life on my own terms. I've come to accept that it's entirely possible for a given religion to be completely wrong but for a god to exist. I actually realized that when I read the Bible. Scripture is packed with stories about religious people doing it wrong. I'm endlessly bemused by the irony of modern religions that are so blind to their own fallibility yet claim those very stories as their foundation. That's another one of those things I'm still working through.&lt;/p&gt;
+&lt;p&gt;Although the baggage of religion is too burdensome for me to bear, and I'm unsure of what role that kind of codified spirituality will have in my life in the long run, I'm enjoying my spiritual journey quite a bit. I've found prayer to be uplifting and soothing. I've found groups of other people interested in discussing things I care a lot about. I've appreciated finding ways to spend some of my spare time that don't feel wasteful and meaningless.&lt;/p&gt;
+&lt;p&gt;If nothing else, religion is a brilliant social hack for bringing strangers together and making people comfortable being vulnerable together. I suspect there's more to it than that, but there's a hell of a lot of cruft to cut through to try to find out. My posture toward religion has shifted from purely antagonistic to curious but skeptical, which for me is a pretty dramatic change. It's no secret that the church as we know it is dying. As an outsider it's not hard to see why and honestly hard to have any attitude about it other than &amp;quot;good riddance&amp;quot;. I see a lot of promising signs of growth amidst the ruins of those communities, though, and I'm quite interested in being a part of a new generation of church goers, more focused on faithfulness and spiritual exploration than moralistic legalism and slavish obedience.&lt;/p&gt;
+&lt;p&gt;I have no idea what that would look like or how we'd get there, but the idea excites me. And I'm pretty sure Jesus would be cool with us exploring new interpretations of ancient traditions along the way.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 15 Sep 2020 20:00:00 -0400</pubDate>
+        <link>https://kiramclean.com/blog/an-atheist-tries-religion/</link>
+        <guid isPermaLink="true">https://kiramclean.com/blog/an-atheist-tries-religion/</guid>
+      </item>
+      <item>
+        <title>Why Are Websites So Complicated Now?</title>
+        <description>&lt;p&gt;I first got into programming because I wanted to make my own websites. Back then
+all it took was two files, an &lt;code&gt;index.html&lt;/code&gt; and a style sheet. I recently decided
+to take up blogging again and started looking around for a simple static site
+generator. There are a couple of reasons why I avoided some other approaches.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I have had negative experiences with Wordpress that make me not want to use it
+again. Plus it is way more sophisticated than I need for a simple place to
+publish some thoughts.&lt;/li&gt;
+&lt;li&gt;I want unambiguous ownership of my blog. Less important but also relevant, I
+want to easily be able to control how it looks. This rules out quite a few
+popular batteries-included blogging platforms.&lt;/li&gt;
+&lt;li&gt;I do not want to setup (or pay for) a server somewhere to serve a simple
+website with only static pages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've been writing software for the internet for some years now, but it's been a
+while since I worked on anything like what we think of as a normal website. When
+I started looking into how those are made these days, I was surprised to find
+mostly complicated, bloated frameworks that nearly completely abstract away the
+basic task of generating HTML.&lt;/p&gt;
+&lt;p&gt;It doesn't take multiple new languages, frameworks, or build tools to make a
+really simple website.&lt;/p&gt;
+&lt;h2&gt;Content is not software&lt;/h2&gt;
+&lt;p&gt;Frameworks are for people building sophisticated software that happens to run in
+a browser. There is no need for them if all you want to do is put some content
+on the internet. I will argue that if your main goal is publishing content you
+don't even need JavaScript at all.&lt;/p&gt;
+&lt;p&gt;JavaScript frameworks mostly help by allowing us to write non-trivial software
+in a language less terrible than JavaScript itself. They can also help with
+things like managing state, reacting to user input, and communicating
+asynchronously with a server to get new information onto a page without needing
+to refresh the whole thing. None of these challenges are present when the main
+purpose of a website is to display static information.&lt;/p&gt;
+&lt;p&gt;For that, all we should need is a language to markup our plain words into
+something a browser can render, like HTML.&lt;/p&gt;
+&lt;h2&gt;A simple static site generator&lt;/h2&gt;
+&lt;p&gt;I prefer writing software over configuring software, and I resent things that
+are more complicated than they need to be. I'm a minimalist by nature and I am
+against the direction our industry is currently headed -- shipping bloated and
+buggy software by the ton -- but that's a topic for another day.&lt;/p&gt;
+&lt;p&gt;After some investigation and frustration trying to do simple things, like edit
+canned templates or change the source and structure of my content, I of course
+decided to write my own static site generator, like any sane developer would do.&lt;/p&gt;
+&lt;p&gt;For now all it does is convert my posts (which I write in markdown) into HTML
+and insert that HTML into a template, then put those files in the right place.
+As my blog grows I'll add more features, and maybe even make it useful enough
+for someone else to use someday. For now it's a simple solution that works on my
+machine, and was definitely more enjoyable for me to write than was faffing with
+configuring the other tools I tried.&lt;/p&gt;
+&lt;h2&gt;A plea for simplicity&lt;/h2&gt;
+&lt;p&gt;I get that a lot of people are not making simple websites anymore. There is some
+seriously sophisticated software running in browsers now, which I understand is
+the reason for the proliferation of JavaScript frameworks and build tools
+currently plaguing our work lives.&lt;/p&gt;
+&lt;p&gt;A lot of people are still simply publishing content to the internet, though, and
+we seem to have forgotten what a website is really made of. It's just HTML
+(which is supposed to semantically mark up content to describe its &lt;em&gt;meaning
+and structure&lt;/em&gt;), and optional styling with CSS (to describe it's
+&lt;em&gt;appearance&lt;/em&gt;). These languages are not so complicated to write that we
+need complex frameworks that add a dozen more layers between the content and the
+final static pages. If all you want is to put some information on the internet,
+see if an old fashioned HTML file might be all you need.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 2 Aug 2020 20:00:00 -0400</pubDate>
+        <link>https://kiramclean.com/blog/why-are-websites-so-complicated-now/</link>
+        <guid isPermaLink="true">https://kiramclean.com/blog/why-are-websites-so-complicated-now/</guid>
+      </item>
+  </channel>
+</rss>
+
