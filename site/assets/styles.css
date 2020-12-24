@@ -41,17 +41,19 @@ footer {
   border-top: 2px solid var(--light-grey);
   color: var(--grey);
   display: flex;
-  justify-content: space-between;
+  font-size: 70%;
   margin-top: 2rem;
   padding: 1rem 0;
 }
 
-footer small {
-  font-size: small;
-}
-
 footer a {
   display: flex;
+  margin-right: 1.5rem;
+}
+
+footer p {
+  flex: 1;
+  text-align: right;
 }
 
 footer svg {
@@ -89,7 +91,7 @@ main section ul:nth-child(2) li {
 
 time {
   display: block;
-  font-size: small;
+  font-size: 70%;
   color: #8a8a8a;
 }
 
