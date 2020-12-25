@@ -1,3 +1,6 @@
+/* Base styles */
+/***************/
+
 :root {
   --color: #0091ab;
   --white: #fbfbfb;
@@ -5,6 +8,7 @@
   --grey: #8a8a8a;
   --medium-grey: #bbbbbb;
   --light-grey: #e1e1e1;
+  --small: 70%;
 }
 
 html {
@@ -13,6 +17,12 @@ html {
   line-height: 1.7;
   background-color: var(--white);
   font-size: 22px;
+}
+
+/* to undo styles in head that prevent fouc */
+html {
+  visibility: visible;
+  opacity: 1;
 }
 
 body {
@@ -33,96 +43,17 @@ main {
   flex: 1;
 }
 
-header {
-}
-
-footer {
-  align-items: center;
-  border-top: 2px solid var(--light-grey);
-  color: var(--grey);
-  display: flex;
-  font-size: 70%;
-  margin-top: 2rem;
-  padding: 1rem 0;
-}
-
-footer a {
-  display: flex;
-  margin-right: 1.5rem;
-}
-
-footer p {
-  flex: 1;
-  text-align: right;
-}
-
-footer svg {
-  margin-right: 0.35rem;
-}
-
-a {
-  color: var(--color);
-}
-
-a:hover, a:visited:hover {
-  color: var(--black);
-}
-
-a:visited {
-  color: var(--grey);
-}
-
-a:focus {
-  background: var(--color);
-  color: var(--white);
-}
-
-main > ul:first-child,
-main section ul:nth-child(2) {
-  list-style: none;
-  margin: 0;
-  padding: 0
-}
-
-main > ul:first-child li,
-main section ul:nth-child(2) li {
-  margin-bottom: 1rem;
-}
-
 time {
-  display: block;
-  font-size: 70%;
+  display: inline-block;
+  font-size: var(--small);
   color: #8a8a8a;
+  margin-right: 0.5rem;
 }
 
 blockquote {
   border-left: 0.5rem solid var(--light-grey);
   padding-left: 1rem;
   margin: 2rem 0 2rem 1rem;
-}
-
-main hr {
-  border: 0;
-  background: transparent;
-  margin: 2rem 0;
-  font-size: 0.8rem;
-  text-align: center;
-  color: var(--grey);
-}
-
-main hr::before{
-  content: "—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—"
-}
-
-dt {
-  margin-top: 2rem;
-  font-weight: bold;
-}
-
-/* to prevent fouc */
-html {
-  visibility: visible;
-  opacity: 1;
 }
 
 code {
@@ -153,6 +84,121 @@ pre code {
   padding: 0;
 }
 
+/* Lists */
+/*********/
+
 li > p {
   margin-bottom: 0;
+}
+
+/* index pages */
+main section ul:first-child {
+  list-style: none;
+  margin: 0;
+  padding: 0
+}
+
+main section ul:first-child li {
+  margin-bottom: 1rem;
+}
+
+main section ul:first-child li a {
+  font-size: 130%;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+}
+
+/* Footer */
+/**********/
+
+footer {
+  border-top: 2px solid var(--light-grey);
+  color: var(--grey);
+  display: flex;
+  font-size: var(--small);
+  margin-top: 2rem;
+  padding: 1rem 0;
+  align-items: center;
+}
+
+footer a {
+  display: flex;
+  margin-right: 1.5rem;
+  align-items: center;
+}
+
+footer p {
+  flex: 1;
+  text-align: right;
+}
+
+footer svg {
+  margin-right: 0.35rem;
+}
+
+/* Links */
+/**********/
+
+a {
+  color: var(--color);
+}
+
+a:hover, a:visited:hover {
+  color: var(--grey);
+}
+
+a:visited {
+  color: var(--grey);
+}
+
+a:focus {
+  background: var(--color);
+  color: var(--white);
+}
+
+/* Page breaks */
+/***************/
+
+main hr {
+  border: 0;
+  background: transparent;
+  margin: 2rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--grey);
+}
+
+main hr::before{
+  content: "—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0—"
+}
+
+/* Description lists */
+/*********************/
+
+dt {
+  margin-top: 2rem;
+  font-weight: bold;
+}
+
+/* Screens 750px or smaller */
+/****************************/
+@media only screen and (max-width: 750px) {
+  main section ul:first-child li {
+    display: grid;
+    grid-template: "top" "bottom";
+  }
+
+  main section ul:first-child li a {
+    line-height: 1.2;
+  }
+
+  time {
+    display: block;
+    grid-area: bottom;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
