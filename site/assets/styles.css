@@ -217,4 +217,8 @@ dt {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  footer svg {
+    width: 18px;
+  }
 }
