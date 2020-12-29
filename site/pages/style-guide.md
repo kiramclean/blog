@@ -1,5 +1,6 @@
 ---
 title: Style Guide
+slug: style-guide
 ---
 
 ## Fonts

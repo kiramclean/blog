@@ -36,11 +36,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 main {
@@ -112,6 +112,50 @@ main section ul:first-child li a {
   letter-spacing: 0.05rem;
 }
 
+/* Links */
+/**********/
+
+a {
+  color: var(--colour);
+}
+
+a:visited {
+  color: var(--black);
+}
+
+a:focus, a:hover {
+  background: var(--colour);
+  color: var(--white);
+  outline: 3px solid var(--colour);
+  text-decoration: none;
+}
+
+a:visited:hover, a:visited:focus {
+  background: var(--black);
+  color: var(--white);
+  outline: 3px solid var(--black);
+}
+
+/* Header */
+/**********/
+
+header {
+  padding-top: 2rem;
+  line-height: 1;
+}
+
+header nav a {
+  fill: var(--colour);
+  display: inline-block;
+}
+
+header nav a:hover, header nav a:focus,
+header nav a:visited:hover, header nav a:visited:focus {
+  fill: var(--white);
+  background: var(--colour);
+  outline: unset;
+}
+
 /* Footer */
 /**********/
 
@@ -138,30 +182,6 @@ footer p {
 
 footer svg {
   margin-right: 0.35rem;
-}
-
-/* Links */
-/**********/
-
-a {
-  color: var(--colour);
-}
-
-a:visited {
-  color: var(--black);
-}
-
-a:focus, a:hover {
-  background: var(--colour);
-  color: var(--white);
-  outline: 3px solid var(--colour);
-  text-decoration: none;
-}
-
-a:visited:hover, a:visited:focus {
-  background: var(--black);
-  color: var(--white);
-  outline: 3px solid var(--black);
 }
 
 /* Page breaks */

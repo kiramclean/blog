@@ -1,5 +1,5 @@
 ---
-slug: why-are-websites-so-complicated-now
+slug: blog/why-are-websites-so-complicated-now
 title: Why Are Websites So Complicated Now?
 date: 2020-08-03
 ---
