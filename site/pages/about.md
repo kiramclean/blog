@@ -12,7 +12,7 @@ Hi! I'm Kira. This is my personal website. I write here about things I'm thinkin
 
 ## About This Website
 
-This website is built with [dynamo](https://github.com/kiramclean/dynamo), a simple static site generator I made, and served by [netlify](https://www.netlify.com/products/build/) via this [github repo](https://github.com/kiramclean/blog). If you spot a typo or other problem you can [make an issue](https://github.com/kiramclean/blog/issues/new) there. I use the [normalize.css](LINK) stylesheet to try to make my css behave predictably, but otherwise all the css on this website is hand-rolled and intentionally minimalist by me. I have a [style guide](/style-guide) for reference, with a sampling of all the elements found on this website.
+This website is built with [dynamo](https://github.com/kiramclean/dynamo), a simple static site generator I made, and served by [netlify](https://www.netlify.com/products/build/) via [this github repo](https://github.com/kiramclean/blog). If you spot a typo or other problem you can [make an issue](https://github.com/kiramclean/blog/issues/new) there. I use the [normalize.css](https://github.com/necolas/normalize.css/) stylesheet to try to make my css behave predictably, but otherwise all the css on this website is hand-rolled and intentionally minimalist by me. I have a [style guide](/style-guide) for reference, with a sampling of all the elements found on this website.
 
 ## About Analytics and Privacy
 
