@@ -16,7 +16,7 @@ Some parts are pieced together from other partial guides or longer blog posts, s
 - An account with [Backblaze](https://www.backblaze.com/b2/cloud-storage.html)
 - An account with [Healthchecks.io](https://healthchecks.io/)
 - Your ssh key 
-- $75/year. I pay $5/month for the server I use, $5/year for the domain name ($5.16 actually), and CAD$10/year for carbon offsets.
+- $99/year. I pay $5/month for the server I use, $2/month for back ups, $5/year for the domain name ($5.16 actually), and CAD$10/year for carbon offsets.
 
 ## 1. Set up a server running Ubuntu and set up ssh access for yourself
 
@@ -80,7 +80,7 @@ I managed to forget my password in the time between installing Nextcloud and try
 
 ### 7.1. Turn on "local" backups
 
-- Enable backups for your whole server for a first layer of backups. I did this when I was setting up my Linode (there was a checkbox in the "Optional Add-ons" section for it). Otherwise there's a "Backups" tab in the admin section where you can turn them on. Linode charges $2/months for this.
+- Enable backups for your whole server for a first layer of backups. I did this when I was setting up my Linode (there was a checkbox in the "Optional Add-ons" section for it). Otherwise there's a "Backups" tab in the admin section where you can turn them on. Linode charges $2/month for this.
 
 ### 7.2. Set up "offsite" backups
 

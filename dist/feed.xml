@@ -4,7 +4,7 @@
     <title>Kira McLean</title>
     <link>https://kiramclean.com</link>
     <description>Kira's thoughts and guides on tech, life, and meaning.</description>
-    <lastBuildDate>Tue, 29 Dec 2020 00:41:10 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 30 Dec 2020 13:08:10 -0500</lastBuildDate>
     <atom:link href="https://kiramclean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>Dynamo v0.0</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -20,7 +20,7 @@
 &lt;li&gt;An account with &lt;a href=&quot;https://www.backblaze.com/b2/cloud-storage.html&quot;&gt;Backblaze&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;An account with &lt;a href=&quot;https://healthchecks.io/&quot;&gt;Healthchecks.io&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Your ssh key&lt;/li&gt;
-&lt;li&gt;$75/year. I pay $5/month for the server I use, $5/year for the domain name ($5.16 actually), and CAD$10/year for carbon offsets.&lt;/li&gt;
+&lt;li&gt;$99/year. I pay $5/month for the server I use, $2/month for back ups, $5/year for the domain name ($5.16 actually), and CAD$10/year for carbon offsets.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;1. Set up a server running Ubuntu and set up ssh access for yourself&lt;/h2&gt;
 &lt;ul&gt;
@@ -83,7 +83,7 @@
 &lt;h2&gt;7. Set up backups&lt;/h2&gt;
 &lt;h3&gt;7.1. Turn on &amp;quot;local&amp;quot; backups&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Enable backups for your whole server for a first layer of backups. I did this when I was setting up my Linode (there was a checkbox in the &amp;quot;Optional Add-ons&amp;quot; section for it). Otherwise there's a &amp;quot;Backups&amp;quot; tab in the admin section where you can turn them on. Linode charges $2/months for this.&lt;/li&gt;
+&lt;li&gt;Enable backups for your whole server for a first layer of backups. I did this when I was setting up my Linode (there was a checkbox in the &amp;quot;Optional Add-ons&amp;quot; section for it). Otherwise there's a &amp;quot;Backups&amp;quot; tab in the admin section where you can turn them on. Linode charges $2/month for this.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;7.2. Set up &amp;quot;offsite&amp;quot; backups&lt;/h3&gt;
 &lt;ul&gt;
