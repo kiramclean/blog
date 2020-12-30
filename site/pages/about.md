@@ -22,4 +22,4 @@ I consider tracking what people do around the internet to be virtual stalking an
 
 I write software for a living, mostly in [Clojure](https://clojure.org/), and spend most of my time in Montreal, Canada. I work from home and love travelling when possible. I often spend many months of the year in other places. I love warm weather, but have only Canadian citizenship so I'm perpetually seeking sunny destinations that are safe, welcoming, and affordable.
 
-I love hearing from people and talking about what's on my mind, i.e. the kind of stuff I write about here. You can find me on twitter as [@kiraemclean](https://twitter.com/kiraemclean) or reach me by email at [contact@kiramclean.com](mailto:contact@kiramclean.com)
+I love hearing from people and talking about what's on my mind, i.e. the kind of stuff I write about here. You can find me on twitter as [@kiraemclean](https://twitter.com/kiraemclean) or reach me by email at [contact@kiramclean.com](mailto:contact@kiramclean.com).
