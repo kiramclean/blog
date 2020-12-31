@@ -16,10 +16,10 @@ This website is built with [dynamo](https://github.com/kiramclean/dynamo), a sim
 
 ## About Analytics and Privacy
 
-I consider tracking what people do around the internet to be virtual stalking and believe it should be illegal, just like stalking someone in real life is. I use [Fathom analytics](https://usefathom.com/) on this website so that I can tell which posts are popular, because that influences my decisions about what to write (sometimes). Fathom is a company that hates surveillance, like I do, and they only collect anonymous statistics about what pages are visited and from where. It's basically a glorified hit counter. I do not and will never try to stalk you around the internet.
+I consider tracking what people do around the internet to be virtual stalking and believe it should be illegal, just like stalking someone in real life is. I use [Fathom analytics](https://usefathom.com/) on this website so that I can tell which posts are popular, because that influences my decisions about what to write (sometimes). Fathom is a company that [hates surveillance](https://usefathom.com/blog/privacy-matters-2021), like I do, and they only collect anonymous statistics about what pages are visited and from where; basically it's a hit counter. I do not and will never try to stalk you around the internet.
 
 ## About Me
 
 I write software for a living, mostly in [Clojure](https://clojure.org/), and spend most of my time in Montreal, Canada. I work from home and love travelling when possible. I often spend many months of the year in other places. I love warm weather, but have only Canadian citizenship so I'm perpetually seeking sunny destinations that are safe, welcoming, and affordable.
 
-I love hearing from people and talking about what's on my mind, i.e. the kind of stuff I write about here. You can find me on twitter as [@kiraemclean](https://twitter.com/kiraemclean) or reach me by email at [contact@kiramclean.com](mailto:contact@kiramclean.com).
+I love hearing from people and talking about what's on my mind, i.e. the kind of stuff I write about here. You can find me on twitter as [@kiraemclean](https://twitter.com/kiraemclean) or email me at [contact@kiramclean.com](mailto:contact@kiramclean.com).
