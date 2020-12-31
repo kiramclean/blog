@@ -4,7 +4,7 @@
     <title>Kira McLean</title>
     <link>https://kiramclean.com</link>
     <description>Kira's thoughts and guides on tech, life, and meaning.</description>
-    <lastBuildDate>Thu, 31 Dec 2020 14:14:39 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 31 Dec 2020 14:31:18 -0500</lastBuildDate>
     <atom:link href="https://kiramclean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>Dynamo v0.0</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -26,7 +26,7 @@
 &lt;li&gt;Click &amp;quot;Add New Repository&amp;quot; on the dashboard for your github user/organization (the url should be something like &lt;code&gt;https://codecov.io/gh/&amp;lt;gh-username&amp;gt;&lt;/code&gt;)&lt;/li&gt;
 &lt;li&gt;Select the repo&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This should leave you at a screen that shows you a Codecov token. If not, click on the &amp;quot;Settings&amp;quot; tab for your project in Codecov to see thee token. Copy it.&lt;/p&gt;
+&lt;p&gt;This should leave you at a screen that shows you a Codecov token. If not, click on the &amp;quot;Settings&amp;quot; tab for your project in Codecov to see the token. Copy it.&lt;/p&gt;
 &lt;h2&gt;2. Add the Codecov token to CircleCI&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;In CircleCI &amp;quot;Project Settings&amp;quot; &amp;gt; &amp;quot;Environment Variables&amp;quot; set &lt;code&gt;CODECOV_TOKEN&lt;/code&gt; to the value copied from above&lt;/li&gt;

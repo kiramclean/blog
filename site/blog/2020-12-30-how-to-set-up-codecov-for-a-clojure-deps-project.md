@@ -22,7 +22,7 @@ The same idea should work fine with other combinations of services, but you migh
 - Click "Add New Repository" on the dashboard for your github user/organization (the url should be something like `https://codecov.io/gh/<gh-username>`)
 - Select the repo
 
-This should leave you at a screen that shows you a Codecov token. If not, click on the "Settings" tab for your project in Codecov to see thee token. Copy it.
+This should leave you at a screen that shows you a Codecov token. If not, click on the "Settings" tab for your project in Codecov to see the token. Copy it.
 
 ## 2. Add the Codecov token to CircleCI
 
