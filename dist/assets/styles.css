@@ -3,6 +3,9 @@
 
 :root {
   --colour: #0091ab;
+  --colour-dark-mode: #64d1dd;
+  --literally-black: #000000;
+  --darker-black: #242424;
   --black: #313131;
   --grey: #8a8a8a;
   --medium-grey: #bbbbbb;
@@ -263,5 +266,67 @@ dt {
 
   footer svg {
     width: 18px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color: var(--light-grey);
+    background-color: var(--black);
+  }
+
+  time {
+    color: var(--light-grey);
+  }
+
+  blockquote {
+    border-left: 0.5rem solid var(--light-grey);
+  }
+
+  code {
+    background: var(--darker-black);
+    box-shadow: 2px 2px var(--literally-black);
+  }
+
+  pre {
+    background: var(--darker-black);
+    box-shadow: 2px 2px var(--literally-black);
+    color: var(--white);
+  }
+
+  /* Links */
+  /**********/
+
+  a {
+    color: var(--colour-dark-mode);
+  }
+
+  a:visited {
+    color: var(--grey);
+  }
+
+  a:focus, a:hover {
+    background: var(--colour-dark-mode);
+    color: var(--black);
+    outline: 3px solid var(--colour-dark-mode);
+  }
+
+  a:visited:hover, a:visited:focus {
+    background: var(--grey);
+    color: var(--black);
+    outline: 3px solid var(--grey);
+  }
+
+  /* Header */
+  /**********/
+
+  header nav a {
+    fill: var(--colour-dark-mode);
+  }
+
+  header nav a:hover, header nav a:focus,
+  header nav a:visited:hover, header nav a:visited:focus {
+    fill: var(--black);
+    background: var(--colour-dark-mode);
   }
 }

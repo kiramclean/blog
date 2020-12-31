@@ -9,12 +9,15 @@ I use system fonts so no extra fonts have to be downloaded because of my website
 
 ## Colours
 
+<div style="padding: 0.5rem 1rem; color: var(--white); background: var(--literally-black);">Literally black - #000000</div>
+<div style="padding: 0.5rem 1rem; color: var(--white); background: var(--darker-black);">Darker black - #242424</div>
 <div style="padding: 0.5rem 1rem; color: var(--white); background: var(--black);">Black - #313131</div>
 <div style="padding: 0.5rem 1rem; color: var(--white); background: var(--grey);">Grey - #8a8a8a</div>
-<div style="padding: 0.5rem 1rem; background: var(--medium-grey);">Medium grey - #bbbbbb</div>
-<div style="padding: 0.5rem 1rem; background: var(--light-grey);">Light grey - #e1e1e1</div>
-<div style="padding: 0.5rem 1rem; background: var(--white);">White - #fbfbfb</div>
+<div style="padding: 0.5rem 1rem; color: var(--black); background: var(--medium-grey);">Medium grey - #bbbbbb</div>
+<div style="padding: 0.5rem 1rem; color: var(--black); background: var(--light-grey);">Light grey - #e1e1e1</div>
+<div style="padding: 0.5rem 1rem; color: var(--black); background: var(--white);">White - #fbfbfb</div>
 <div style="padding: 0.5rem 1rem; color: var(--white);  background: var(--colour);">Colour - #0091ab</div>
+<div style="padding: 0.5rem 1rem; color: var(--black);  background: var(--colour-dark-mode);">Colour dark mode - #64d1dd</div>
 
 ## Everything else
 
@@ -26,7 +29,7 @@ I use system fonts so no extra fonts have to be downloaded because of my website
 
 #### Small heading (h4)
 
-[a visited link](/style-guide) and [an unvisited link -- don't click this!](https://example.com)
+[a visited link](/style-guide) and [an unvisited link -- don't click this!](https://example.com/dont-click-this-kira)
 
 - list
 - one
