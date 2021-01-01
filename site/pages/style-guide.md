@@ -9,6 +9,8 @@ I use system fonts so no extra fonts have to be downloaded because of my website
 
 ## Colours
 
+The teal is my favourite colour. The rest are just to achieve enough contrast whilst trying not to be _too_ contrasty, which I also find hard on the eyes. The excessive in-between levels of black and grey are only there to make the code blocks look decent.
+
 <div style="padding: 0.5rem 1rem; color: var(--white); background: var(--literally-black);">Literally black - #000000</div>
 <div style="padding: 0.5rem 1rem; color: var(--white); background: var(--darker-black);">Darker black - #242424</div>
 <div style="padding: 0.5rem 1rem; color: var(--white); background: var(--black);">Black - #313131</div>
@@ -18,6 +20,19 @@ I use system fonts so no extra fonts have to be downloaded because of my website
 <div style="padding: 0.5rem 1rem; color: var(--black); background: var(--white);">White - #fbfbfb</div>
 <div style="padding: 0.5rem 1rem; color: var(--white);  background: var(--colour);">Colour - #0091ab</div>
 <div style="padding: 0.5rem 1rem; color: var(--black);  background: var(--colour-dark-mode);">Colour dark mode - #64d1dd</div>
+
+## Images
+
+A smallish plain image
+
+![Montreal from Mount Royal](/assets/images/montreal.jpg)
+
+A figure with caption, intentionally wider than my width
+
+<figure>
+  <img src="/assets/images/me.jpg" alt="Kira McLean">
+  <figcaption>That's me! A very old picture, but it's my face everywhere on the internet and I still look the same.</figcaption>
+</figure>
 
 ## Everything else
 
