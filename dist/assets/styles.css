@@ -129,7 +129,7 @@ main section ul:first-child li a {
 img {
   max-width: 100%;
   display: block;
-  margin: 0 auto;
+  margin: 2rem auto;
   border: 10px solid var(--light-grey);
   border-radius: 3px;
   box-shadow: 4px 4px var(--medium-grey);
@@ -137,14 +137,27 @@ img {
 }
 
 figure {
-  margin: 2rem 0;
+  margin: 1rem 0;
+}
+
+figure img {
+  margin: 0 auto;
 }
 
 figcaption {
   font-size: var(--small);
   color: var(--grey);
-  margin: 0.5rem 0;
+  margin: 0.5rem auto;
   text-align: center;
+  width: 80%;
+  display: block;
+}
+
+.gallery {
+  display: grid;
+  grid-template-rows: masonry;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1rem;
 }
 
 /* Links */
@@ -269,6 +282,18 @@ dt {
 
   img {
     border-width: 7px;
+  }
+
+  figure {
+    margin: 0.5rem 0;
+  }
+
+  figcaption {
+    width: 100%;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(1, 1fr);
   }
 
   /* Header */
