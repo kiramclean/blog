@@ -1,7 +1,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kira McLean{{#title}} | {{ title }}{{/title}}</title>
+  <title>Kira McLean{{# title }} | {{ title }}{{/ title }}</title>
   <style>
     html {visibility: hidden; opacity:0;}
     a {color:  #0091ab;}
@@ -12,5 +12,14 @@
   <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
   <link rel="alternate" href="{{meta/root-url}}/feed.xml" type="application/rss+xml" title="Kira McLean">
   <script src="https://snake.kiramclean.com/script.js" data-site="EZHCZSEN" defer></script>
+
+  <meta property="og:title" content="{{# title }}{{ title }}{{/ title }}{{^ title }}Kira McLean{{/ title }}">
+  <meta property="og:description" content="{{# title }}{{ description }}{{/ title }}{{^ title }}My personal space on the internet{{/ title }}">
+  <meta property="og:url" content="{{meta/root-url}}{{slug}}">
+  <meta property="og:image" content="{{# image }}{{ meta/root-url }}/{{ image }}{{/ image }} {{^ image}}{{ meta/root-url }}/assets/images/logo.png{{/ image }}">
+  <meta property="og:type" content="{{# title }}article{{/ title }}{{^ title }}website{{/ title }}">
+  <meta property="og:site_name" content="Kira McLean">
+  <meta name="og:image:alt" content="Kira McLean">
+  <meta name="twitter:card" content="summary">
 </head>
 
