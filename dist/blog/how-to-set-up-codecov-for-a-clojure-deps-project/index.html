@@ -41,7 +41,7 @@
     </header>
     <main>
       <h1>How To Set Up Codecov For a Clojure Deps Project</h1>
-      <p>I recently set up code coverage reporting with <a href="https://about.codecov.io/product/features/">Codecov</a> for a Clojure project of mine that uses tools.deps and builds on CircleCI. It turned out to be pretty easy but the documentation for the various parts was a bit ambiguous, so I wrote down the steps here in case you're looking to do the same. You can see all the changes it took together in context in <a href="https://github.com/kiramclean/morphy/commit/cd66a0414807ab19d025a2ce0abe7cb66d8f1dde">this commit</a> where I set it up for my project.</p>
+      <p>I recently set up code coverage reporting with <a href="https://about.codecov.io/product/features/">Codecov</a> for a Clojure project of mine that uses tools.deps and builds on CircleCI. It turned out to be pretty easy but the documentation for the various parts was a bit ambiguous, so I wrote down the steps here in case you're looking to do the same. You can see all the changes it took together in context in <a href="https://github.com/kiramclean/morphy/commit/c8fd8a425cee712e70ca0ef3fce62b52566ba114">this commit</a> where I set it up for my project.</p>
 <h2>Assumptions</h2>
 <p>These instructions assume your project uses the same specific set of tools as me:</p>
 <ul>
@@ -62,7 +62,7 @@
 <ul>
 <li>In CircleCI &quot;Project Settings&quot; &gt; &quot;Environment Variables&quot; set <code>CODECOV_TOKEN</code> to the value copied from above</li>
 </ul>
-<p>I'm assuming your project is already building on CircleCI. If not you can do similar steps to above on Circle (sign in with Github and add your project), and crib my <a href="https://github.com/kiramclean/morphy/blob/cd66a0414807ab19d025a2ce0abe7cb66d8f1dde/.circleci/config.yml">config for a Clojure deps project</a> to get started.</p>
+<p>I'm assuming your project is already building on CircleCI. If not you can do similar steps to above on Circle (sign in with Github and add your project), and crib my <a href="https://github.com/kiramclean/morphy/blob/main/.circleci/config.yml">config for a Clojure deps project</a> to get started.</p>
 <h2>3. Generate Codecov reports from test runs in CI</h2>
 <ul>
 <li>Add a new alias to your deps project to run tests and generate the Codecov reports using <a href="https://github.com/cloverage/cloverage">cloverage</a>:</li>

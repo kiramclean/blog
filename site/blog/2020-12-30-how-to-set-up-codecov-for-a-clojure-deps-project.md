@@ -3,7 +3,7 @@ title: How To Set Up Codecov For a Clojure Deps Project
 date: 2020-12-30
 ---
 
-I recently set up code coverage reporting with [Codecov](https://about.codecov.io/product/features/) for a Clojure project of mine that uses tools.deps and builds on CircleCI. It turned out to be pretty easy but the documentation for the various parts was a bit ambiguous, so I wrote down the steps here in case you're looking to do the same. You can see all the changes it took together in context in [this commit](https://github.com/kiramclean/morphy/commit/cd66a0414807ab19d025a2ce0abe7cb66d8f1dde) where I set it up for my project.
+I recently set up code coverage reporting with [Codecov](https://about.codecov.io/product/features/) for a Clojure project of mine that uses tools.deps and builds on CircleCI. It turned out to be pretty easy but the documentation for the various parts was a bit ambiguous, so I wrote down the steps here in case you're looking to do the same. You can see all the changes it took together in context in [this commit](https://github.com/kiramclean/morphy/commit/c8fd8a425cee712e70ca0ef3fce62b52566ba114) where I set it up for my project.
 
 ## Assumptions
 
@@ -28,7 +28,7 @@ This should leave you at a screen that shows you a Codecov token. If not, click 
 
 - In CircleCI "Project Settings" > "Environment Variables" set `CODECOV_TOKEN` to the value copied from above
 
-I'm assuming your project is already building on CircleCI. If not you can do similar steps to above on Circle (sign in with Github and add your project), and crib my [config for a Clojure deps project](https://github.com/kiramclean/morphy/blob/cd66a0414807ab19d025a2ce0abe7cb66d8f1dde/.circleci/config.yml) to get started.
+I'm assuming your project is already building on CircleCI. If not you can do similar steps to above on Circle (sign in with Github and add your project), and crib my [config for a Clojure deps project](https://github.com/kiramclean/morphy/blob/main/.circleci/config.yml) to get started.
 
 ## 3. Generate Codecov reports from test runs in CI
 

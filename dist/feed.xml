@@ -4,7 +4,7 @@
     <title>Kira McLean</title>
     <link>https://kiramclean.com</link>
     <description>Kira's thoughts and guides on tech, life, and meaning.</description>
-    <lastBuildDate>Fri, 1 Jan 2021 23:16:34 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 4 Jan 2021 10:23:30 -0500</lastBuildDate>
     <atom:link href="https://kiramclean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>Dynamo v0.0</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -77,7 +77,7 @@
       </item>
       <item>
         <title>How To Set Up Codecov For a Clojure Deps Project</title>
-        <description>&lt;p&gt;I recently set up code coverage reporting with &lt;a href=&quot;https://about.codecov.io/product/features/&quot;&gt;Codecov&lt;/a&gt; for a Clojure project of mine that uses tools.deps and builds on CircleCI. It turned out to be pretty easy but the documentation for the various parts was a bit ambiguous, so I wrote down the steps here in case you're looking to do the same. You can see all the changes it took together in context in &lt;a href=&quot;https://github.com/kiramclean/morphy/commit/cd66a0414807ab19d025a2ce0abe7cb66d8f1dde&quot;&gt;this commit&lt;/a&gt; where I set it up for my project.&lt;/p&gt;
+        <description>&lt;p&gt;I recently set up code coverage reporting with &lt;a href=&quot;https://about.codecov.io/product/features/&quot;&gt;Codecov&lt;/a&gt; for a Clojure project of mine that uses tools.deps and builds on CircleCI. It turned out to be pretty easy but the documentation for the various parts was a bit ambiguous, so I wrote down the steps here in case you're looking to do the same. You can see all the changes it took together in context in &lt;a href=&quot;https://github.com/kiramclean/morphy/commit/c8fd8a425cee712e70ca0ef3fce62b52566ba114&quot;&gt;this commit&lt;/a&gt; where I set it up for my project.&lt;/p&gt;
 &lt;h2&gt;Assumptions&lt;/h2&gt;
 &lt;p&gt;These instructions assume your project uses the same specific set of tools as me:&lt;/p&gt;
 &lt;ul&gt;
@@ -98,7 +98,7 @@
 &lt;ul&gt;
 &lt;li&gt;In CircleCI &amp;quot;Project Settings&amp;quot; &amp;gt; &amp;quot;Environment Variables&amp;quot; set &lt;code&gt;CODECOV_TOKEN&lt;/code&gt; to the value copied from above&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I'm assuming your project is already building on CircleCI. If not you can do similar steps to above on Circle (sign in with Github and add your project), and crib my &lt;a href=&quot;https://github.com/kiramclean/morphy/blob/cd66a0414807ab19d025a2ce0abe7cb66d8f1dde/.circleci/config.yml&quot;&gt;config for a Clojure deps project&lt;/a&gt; to get started.&lt;/p&gt;
+&lt;p&gt;I'm assuming your project is already building on CircleCI. If not you can do similar steps to above on Circle (sign in with Github and add your project), and crib my &lt;a href=&quot;https://github.com/kiramclean/morphy/blob/main/.circleci/config.yml&quot;&gt;config for a Clojure deps project&lt;/a&gt; to get started.&lt;/p&gt;
 &lt;h2&gt;3. Generate Codecov reports from test runs in CI&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Add a new alias to your deps project to run tests and generate the Codecov reports using &lt;a href=&quot;https://github.com/cloverage/cloverage&quot;&gt;cloverage&lt;/a&gt;:&lt;/li&gt;
