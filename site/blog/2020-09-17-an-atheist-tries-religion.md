@@ -1,6 +1,7 @@
 ---
 title: An Atheist Tries Religion
 date: 2020-09-16
+site/group: Religion
 ---
 
 I grew up as an outsider to religion. I never considered it a worthwhile pursuit and spent quite a few years as an outspoken critic. As an adult I began to explore it for myself, and I now have what I would count as a spiritual life. I still find most of what religions teach very hard to believe, but I've also found a lot of value in them. My secular education left me desperately unprepared for the hardships of adulthood and, like many people who turn to religion, when life sent me seeking answers I ended up in church. Spoiler alert: I didn't find any answers, but I did find wisdom and traditions that I now believe have great potential.

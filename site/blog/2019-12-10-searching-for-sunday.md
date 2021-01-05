@@ -1,6 +1,7 @@
 ---
 title: Searching for Sunday
 date: 2019-12-10
+site/group: Reading
 ---
 
 What is the point of going to church? I ask myself this question weekly. I

@@ -1,6 +1,7 @@
 ---
 title: Journalism Is Important
 date: 2020-10-15
+site/group: Lessons From A Pandemic
 ---
 
 This is the first post in a series on things the 2020 pandemic has taught me. It's been by far the weirdest and hardest thing I've experienced so far in my life. It was a real struggle to figure out how to operate in this new kind of world, but after about half a year I feel like I'm finally starting to get my bearings. Some days feel normal again, and I can mostly do the things I used to enjoy before the pandemic hit. Now that I have some presence of mind back I realized the experience has actually taught me several important things. The first is that journalism is important.

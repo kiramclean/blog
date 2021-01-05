@@ -1,7 +1,10 @@
 <section>
   <ul>
-    {{#blog}}
-      {{>post-list-item}}
-    {{/blog}}
+    {{# site/groups }}
+      <h2>{{ group/label }}</h2>
+      {{# group/items }}
+        {{>post-list-item}}
+      {{/ group/items }}
+    {{/ site/groups }}
   </ul>
 </section>

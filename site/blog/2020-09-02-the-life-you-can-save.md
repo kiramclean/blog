@@ -1,6 +1,7 @@
 ---
 title: The Life You Can Save
 date: 2020-09-02
+site/group: Reading
 ---
 
 What are our ethical obligations to each other? It's a complicated question. Living in a civilised society implies abiding by a set of shared rules. Some are explicit like laws and contracts, some are implicit like cultural norms, and some are disputed. Whether we have an obligation to care for others, and if so to what extent, often ends up being debated as a political issue, but at its core it's a philosophical question.

@@ -2,6 +2,7 @@
 slug: blog/why-are-websites-so-complicated-now
 title: Why Are Websites So Complicated Now?
 date: 2020-08-03
+site/group: Tech
 ---
 
 I first got into programming because I wanted to make my own websites. Back then
