@@ -101,8 +101,10 @@ Once I got over the initial mental hurdle of expecting everything to be free or 
 
 I know I'm just dreaming waiting for the day Google realizes the error of its ways and starts running an ethical business, but that doesn't mean it's not worth taking a stand in the meantime. Individually refusing to fuel the databases and algorithms Google profits from is one tiny thing it's totally possible to do.
 
+***Update**: A lot of people in the comments have pointed out that it takes a lot more than this to actually escape Google's reach, which is true. My comment above that I'm "no longer part of Google's ad ecosystem" is an overstatement. As [one commenter](https://news.ycombinator.com/item?id=25654222#25655515) put it, "Google will still track much of what you do online. The internet is rotten with linked media, amp pages, blogs, and ads hosted on Google servers." They're right, but that doesn't mean none of this has any impact. I find the de-googling community can be too defeatist and purist at times, but perhaps I swing too far the other direction here. I don't want to minimize the amount of effort it takes to truly become Google-free, but I also want to encourage and inspire average people to make these changes, which requires taking a more pragmatic approach.*
+
+**Discuss this post on [Hacker News](https://news.ycombinator.com/item?id=25654222), [Dev.to](https://dev.to/kiraemclean/what-i-use-now-instead-of-google-56lf) or [Reddit](https://www.reddit.com/r/degoogle/comments/krexp7/i_spent_2020_replacing_all_the_google_things_in/)**
+
 ### Footnotes
 
 <small id="footnote-1-text">1. That previous link goes to a memo saying that the primary purpose of the project is "to field technology to augment or automate Processing, Exploitation, and Dissemination (PED) for tactical Unmanned Aerial System (UAS)", which means making AI for drones so they can better target humans and other "targets". That really bothers me. <a href="https://kiramclean.com/blog/what-i-use-now-instead-of-google/#footnote-1">↵</a></small>
-
-**Discuss this post on [Dev.to](https://dev.to/kiraemclean/what-i-use-now-instead-of-google-56lf) or [Reddit](https://www.reddit.com/r/degoogle/comments/krexp7/i_spent_2020_replacing_all_the_google_things_in/)**
