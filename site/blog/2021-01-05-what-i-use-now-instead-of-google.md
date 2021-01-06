@@ -104,3 +104,5 @@ I know I'm just dreaming waiting for the day Google realizes the error of its wa
 ### Footnotes
 
 <small id="footnote-1-text">1. That previous link goes to a memo saying that the primary purpose of the project is "to field technology to augment or automate Processing, Exploitation, and Dissemination (PED) for tactical Unmanned Aerial System (UAS)", which means making AI for drones so they can better target humans and other "targets". That really bothers me. <a href="https://kiramclean.com/blog/what-i-use-now-instead-of-google/#footnote-1">↵</a></small>
+
+**Discuss this post on [Dev.to](https://dev.to/kiraemclean/what-i-use-now-instead-of-google-56lf) or [Reddit](https://www.reddit.com/r/degoogle/comments/krexp7/i_spent_2020_replacing_all_the_google_things_in/)**
