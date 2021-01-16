@@ -6,6 +6,8 @@ site/group: Recent
 
 ***Update**: I recently switched to using Github Actions to run my tests because I started getting git auth failures trying to fetch git deps on CircleCI. Learning the random YAML magic required to set up a github action was marginally less awful than faffing with ssh keys on circle. You can see the result in [this commit](https://github.com/kiramclean/morphy/commit/6964d1bbe3fd7130e179212f4088cebc753f5aec). The actual steps to set up codecov for your project are the same.*
 
+***Another update**: CircleCI's support was extremely helpful working with me to get to the bottom of the issue with git deps and ssh keys and found a solution for me. The problem was that the java library the Clojure cli uses to authenticate [couldn't read certain kinds of ssh keys](https://clojure.atlassian.net/browse/TDEPS-91). I updated my circle config with the solution in [this commit](https://github.com/kiramclean/morphy/commit/174e2ffafaaa2db71abcd2a36be11af90963793f) and am back to using CircleCI now.*
+
 ---
 
 I recently set up code coverage reporting with [Codecov](https://about.codecov.io/product/features/) for a Clojure project of mine that uses tools.deps and builds on CircleCI. It turned out to be pretty easy but the documentation for the various parts was a bit ambiguous, so I wrote down the steps here in case you're looking to do the same. You can see all the changes it took together in context in [this commit](https://github.com/kiramclean/morphy/commit/c8fd8a425cee712e70ca0ef3fce62b52566ba114) where I set it up for my project.
