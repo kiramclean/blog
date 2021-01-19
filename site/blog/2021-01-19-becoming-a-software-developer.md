@@ -6,7 +6,7 @@ site/group: Recent
 
 I get asked a lot for advice on becoming a software developer. I didn't study anything related to software in university, but now it's what I do for a living. I also spent about 3.5 years mentoring with [Lighthouse Labs](https://www.lighthouselabs.ca), a local web development bootcamp, and watched (and would like to believe at least in some cases, helped) hundreds of people of every age from wildly diverse backgrounds get jobs as software developers.
 
-This is my advice for people with no technical experience who want to land their first job writing software. It's based on my experience as both a person who did it myself and as a mentor to other people who did it. There's no single right way to go about this, and no matter how you do it's a lot of work. These suggestions are arranged roughly in order, but of course many overlap and kind of happen at the same time.
+This is my advice for people with no technical experience who want to land their first job writing software. It's based on my experience as both a person who did it myself and as a mentor to other people who did it. There's no single right way to go about this, and no matter how you do it's a lot of work. But these are some things that have worked for other people, myself included. These suggestions are arranged roughly in order, but of course many overlap and kind of happen at the same time.
 
 ## Know what you're getting yourself into
 
@@ -56,7 +56,7 @@ Once you can write code that mostly works, start looking for a job. Put the word
 
 It worked. The hiring manager said my letter caught his attention. I had one year of experience at that time and had never worked remotely before, but I got the job.
 
-Don't be afraid to be authentic. Don't lie and say you know more than you, but don't sell yourself short, either. Bootstrapping a career in software is no small feat and there are many teams out there who would love to hire the kinds of self-starting fast learners who do it.
+Don't be afraid to be authentic. Don't lie and say you know more than you do, but don't sell yourself short, either. Bootstrapping a career in software is no small feat and there are many teams out there who would love to hire the kinds of self-starting fast learners who do it.
 
 ## Don't be too picky (at first!)
 
@@ -72,7 +72,7 @@ Startups usually have fewer people available to be mentors, but more opportunity
 
 ## Be a good student
 
-Lastly, once you finally land your first job, be a good student. Treat your first year or two on the job like paid education, not your chance to go in a show everyone how it's done. You know way less than you think, and you have no idea what it takes to build functioning software systems, let alone to deploy or maintain them. Always be humble and eager to learn. Soak up every minute of attention you get from more experienced developers around you and learn from them. Not everything they say is wise or true, but pay attention and copy the things that work whilst ignoring the things that clearly don't.
+Lastly, once you finally land your first job, be a good student. Treat your first year or two on the job like paid education, not your chance to go in and show everyone how it's done. You know way less than you think, and you have no idea what it takes to build functioning software systems, let alone to deploy or maintain them. Always be humble and eager to learn. Soak up every minute of attention you get from more experienced developers around you and learn from them. Not everything they say is wise or true, but pay attention and copy the things that work whilst ignoring the things that clearly don't.
 
 Learn how to ask good questions. Don't be afraid to ask for help, but before you do, at least try to figure out the problem yourself. Write down what you tried, and explain why you're surprised your attempt didn't work.
 
