@@ -18,7 +18,7 @@ The teal is my favourite colour. The rest are just to achieve enough contrast wh
 <div style="padding: 0.5rem 1rem; color: var(--white); background: var(--literally-black);">Literally black - #000000</div>
 <div style="padding: 0.5rem 1rem; color: var(--white); background: var(--darker-black);">Darker black - #242424</div>
 <div style="padding: 0.5rem 1rem; color: var(--white); background: var(--black);">Black - #313131</div>
-<div style="padding: 0.5rem 1rem; color: var(--white); background: var(--grey);">Grey - #8a8a8a</div>
+<div style="padding: 0.5rem 1rem; color: var(--white); background: var(--dark-grey);">Dark Grey- #888888</div>
 <div style="padding: 0.5rem 1rem; color: var(--black); background: var(--medium-grey);">Medium grey - #bbbbbb</div>
 <div style="padding: 0.5rem 1rem; color: var(--black); background: var(--light-grey);">Light grey - #e1e1e1</div>
 <div style="padding: 0.5rem 1rem; color: var(--black); background: var(--white);">White - #fbfbfb</div>

@@ -7,15 +7,16 @@
   --literally-black: #000000;
   --darker-black: #242424;
   --black: #313131;
-  --grey: #9b9b9b;
+  --dark-grey: #888888;
   --medium-grey: #bbbbbb;
   --light-grey: #e1e1e1;
   --white: #fbfbfb;
-  --small: 75%;
+  --small: 0.7rem;
 
   --colour: var(--teal);
   --background: var(--white);
   --text: var(--black);
+  --muted-text: var(--dark-grey);
   --border: var(--light-grey);
   --shadow: var(--medium-grey);
   --code-background: var(--light-grey);
@@ -27,6 +28,7 @@
     --colour: var(--lighter-teal);
     --background: var(--black);
     --text: var(--light-grey);
+    --muted-text: var(--medium-grey);
     --border: var(--darker-black);
     --shadow: var(--literally-black);
     --code-background: var(--darker-black);
@@ -102,11 +104,11 @@ main {
 
 time {
   font-size: var(--small);
-  color: var(--grey);
+  color: var(--muted-text);
 }
 
 blockquote {
-  border-left: 0.5rem solid var(--light-grey);
+  border-left: 0.5rem solid var(--code-background);
   padding-left: 1rem;
   margin: 2rem 0 2rem 1rem;
 }
@@ -129,10 +131,9 @@ li > p {
 main hr {
   border: 0;
   background: transparent;
-  margin: 2rem 0;
-  font-size: 0.8rem;
+  margin: 2rem 0 3.5rem 0;
   text-align: center;
-  color: var(--grey);
+  color: var(--muted-text);
 }
 
 main hr::before{
@@ -230,7 +231,7 @@ figure img {
 
 figcaption {
   font-size: var(--small);
-  color: var(--grey);
+  color: var(--muted-text);
   margin: 0.5rem auto;
   text-align: center;
   width: 80%;
@@ -308,7 +309,7 @@ main section ul:first-child li a {
 
 footer {
   background-color: var(--border);
-  color: var(--grey);
+  color: var(--muted-text);
   font-size: var(--small);
   margin-top: 2rem;
   padding: 2rem 0;
@@ -402,7 +403,7 @@ pre {
   background: var(--code-background);
   border-radius: 5px;
   box-shadow: 2px 2px var(--shadow);
-  font-size: 0.7rem;
+  font-size: var(--small);
   overflow-x: auto;
   padding: 0.5rem 1rem;
   color: var(--code);
@@ -447,7 +448,7 @@ input {
 }
 
 ::placeholder {
-  color: var(--grey);
+  color: var(--muted-text);
   opacity: 1;
 }
 
