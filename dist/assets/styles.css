@@ -87,6 +87,14 @@ li > p {
   margin-bottom: 0;
 }
 
+.confirm {
+  display: inline-block;
+}
+
+.confirm span {
+  margin-left: 0.5rem;
+}
+
 /* Page breaks */
 /***************/
 

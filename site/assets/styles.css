@@ -34,6 +34,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   color: var(--text);
@@ -85,6 +89,14 @@ blockquote {
 
 li > p {
   margin-bottom: 0;
+}
+
+.confirm {
+  display: inline-block;
+}
+
+.confirm span {
+  margin-left: 0.5rem;
 }
 
 /* Page breaks */
@@ -365,4 +377,54 @@ pre {
 pre code {
   box-shadow: unset;
   padding: 0;
+}
+
+/**********************************************************************/
+/* Forms
+/**********************************************************************/
+
+form {
+  display: flex;
+}
+
+form span {
+  margin-right: 0.5rem;
+  flex: 1;
+}
+
+form button {
+  background-color: var(--colour);
+  border-radius: 3px;
+  border: none;
+  color: var(--background);
+  font-weight: bold;
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+
+input {
+  background-color: var(--background);
+  border-radius: 3px;
+  border: 2px solid var(--text);
+  color: var(--grey);
+  margin-top: 1rem;
+  padding: 0.4rem;
+  width: 100%;
+}
+
+::placeholder {
+  opacity: 1;
+}
+
+
+/* Screens 750px or smaller */
+/****************************/
+@media only screen and (max-width: 750px) {
+  form {
+    flex-direction: column;
+  }
+
+  form span {
+    margin: 0;
+  }
 }

@@ -1,10 +1,1 @@
-<section>
-  <ul>
-    {{# site/groups }}
-      <h2 id="{{ group/label }}">{{ group/label }}</h2>
-      {{# group/items }}
-        {{>post-list-item}}
-      {{/ group/items }}
-    {{/ site/groups }}
-  </ul>
-</section>
+{{> blog-index }}
