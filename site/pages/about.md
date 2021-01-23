@@ -10,13 +10,11 @@ Hi! I'm Kira. This is my personal website. I write here about things I'm thinkin
 - spirituality and what role religion can have in the pursuit of spiritual growth
 - what it means to do good and live well, especially through the lens of effective altruism
 
+You can hear about new posts via [RSS](/feed.xml), [email](/newsletter), or by [following me on Twitter](https://twitter.com/kiraemclean) (though I also tweet about a lot of other, non-blog-related things there, too!). 
+
 ## About This Website
 
 This website is built with [morphy](https://github.com/kiramclean/morphy), a simple static site generator I made, and served by [netlify](https://www.netlify.com/products/build/) via [this github repo](https://github.com/kiramclean/blog). If you spot a typo or other problem you can [make an issue](https://github.com/kiramclean/blog/issues/new) there. I use the [normalize.css](https://github.com/necolas/normalize.css/) stylesheet to try to make my css behave predictably, but otherwise all the css on this website is hand-rolled and intentionally minimalist by me. I have a [style guide](/style-guide) for reference, with a sampling of all the elements found on this website. The styles and the idea for a style guide where I can see how everything looks in one place are inspired by a great designer I've had the pleasure of working with, [Benjy Stanton](https://www.benjystanton.co.uk/).
-
-## About Analytics and Privacy
-
-I consider tracking what people do around the internet to be virtual stalking and believe it should be illegal, just like stalking someone in real life is. I use [Fathom analytics](https://usefathom.com/) on this website so that I can tell which posts are popular, because that influences my decisions about what to write (sometimes). Fathom is a company that [hates surveillance](https://usefathom.com/blog/privacy-matters-2021), like I do, and they only collect anonymous statistics about what pages are visited and from where; basically it's a hit counter. I do not and will never try to stalk you around the internet.
 
 ## About Me
 

@@ -5,7 +5,11 @@ slug: style-guide
 
 ## Fonts
 
-I use system fonts so no extra fonts have to be downloaded because of my website. I looked up the default font on the most popular desktop and mobile operating systems and came up with this list: `'San Francisco', 'Helvetica Neue', 'Segoe UI', Roboto, Ubuntu, sans-serif;`
+I use system fonts so no extra fonts have to be downloaded because of my website. I got these system font stacks from [systemfontstack.com](https://systemfontstack.com).
+
+Serif: `-apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;`
+
+Monospace: `Menlo, Consolas, Monaco, "Liberation Mono", "Lucida Console", monospace;`.
 
 ## Colours
 
@@ -34,7 +38,16 @@ A figure with caption, intentionally wider than my width
   <figcaption>That's me! A very old picture, but it's my face everywhere on the internet and I still look the same.</figcaption>
 </figure>
 
-## Everything else
+## Email signup form
+
+<form>
+  <span>
+    <input type="email" name="email" placeholder="Your Email Address">
+  </span>
+  <button type="submit">Send me updates!</button>
+</form>
+
+## Headers
 
 # XL Heading (h1)
 
@@ -43,6 +56,8 @@ A figure with caption, intentionally wider than my width
 ### Medium heading (h3)
 
 #### Small heading (h4)
+
+## Everything else
 
 [a visited link](/style-guide) and [an unvisited link -- don't click this!](https://example.com/dont-click-this-kira)
 
