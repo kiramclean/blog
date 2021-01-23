@@ -11,7 +11,7 @@
   --medium-grey: #bbbbbb;
   --light-grey: #e1e1e1;
   --white: #fbfbfb;
-  --small: 70%;
+  --small: 75%;
 
   --colour: var(--teal);
   --background: var(--white);
@@ -39,7 +39,7 @@
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
   color: var(--text);
   line-height: 1.7;
   background-color: var(--background);
@@ -65,6 +65,25 @@ body {
   max-width: 38rem;
   margin: 0 auto;
   padding: 0 1em;
+}
+
+.message {
+  background: var(--code-background);
+  border-radius: 5px;
+  box-shadow: 2px 2px var(--shadow);
+  font-size: var(--small);
+  padding: 0.5rem 1rem;
+  color: var(--code);
+  display: flex;
+}
+
+.message p {
+  margin: 0;
+}
+
+.message a {
+  margin-left: 1rem;
+  font-weight: bold;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -292,7 +311,7 @@ footer {
   color: var(--grey);
   font-size: var(--small);
   margin-top: 2rem;
-  padding: 1rem 0;
+  padding: 2rem 0;
   align-items: center;
 }
 
@@ -307,14 +326,19 @@ footer .links {
   justify-content: space-between;
 }
 
-footer a {
-  display: flex;
-  margin-right: 1.5rem;
-  align-items: center;
+footer form {
+  margin-bottom: 1.5rem;
+}
+
+footer input {
+  background-color: var(--border);
+}
+
+footer form button {
+  color: var(--border);
 }
 
 footer p {
-  text-align: right;
   margin: 0;
 }
 
@@ -364,7 +388,7 @@ code {
   background: var(--code-background);
   border-radius: 5px;
   box-shadow: 2px 2px var(--shadow);
-  font-family: Menlo, "Lucida Sans Typewriter", monospace;
+  font-family: Menlo, Consolas, Monaco, "Liberation Mono", "Lucida Console", monospace;
   font-size: 0.85rem;
   margin: 0 0.1rem;
   padding: 0.1rem 0.45rem;
@@ -395,6 +419,7 @@ pre code {
 
 form {
   display: flex;
+  padding: 1rem 0;
 }
 
 form span {
@@ -408,21 +433,21 @@ form button {
   border: none;
   color: var(--background);
   font-weight: bold;
-  margin: 1rem 0;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 input {
   background-color: var(--background);
   border-radius: 3px;
   border: 2px solid var(--text);
-  color: var(--grey);
-  margin-top: 1rem;
+  color: var(--text);
   padding: 0.4rem;
   width: 100%;
 }
 
 ::placeholder {
+  color: var(--grey);
   opacity: 1;
 }
 
@@ -435,6 +460,7 @@ input {
   }
 
   form span {
-    margin: 0;
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
 }
