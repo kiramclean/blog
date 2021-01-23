@@ -34,6 +34,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   color: var(--text);
@@ -51,10 +55,15 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  max-width: 38rem;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.constrain {
+  max-width: 38rem;
+  margin: 0 auto;
   padding: 0 1em;
 }
 
@@ -279,13 +288,23 @@ main section ul:first-child li a {
 /**********************************************************************/
 
 footer {
-  border-top: 5px solid var(--border);
+  background-color: var(--border);
   color: var(--grey);
-  display: flex;
   font-size: var(--small);
   margin-top: 2rem;
   padding: 1rem 0;
   align-items: center;
+}
+
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer .links {
+  display: flex;
+  justify-content: space-between;
 }
 
 footer a {
@@ -295,25 +314,20 @@ footer a {
 }
 
 footer p {
-  flex: 1;
   text-align: right;
-}
-
-footer svg {
-  margin-right: 0.35rem;
-  fill: var(--grey);
+  margin: 0;
 }
 
 /* Screens 750px or smaller */
 /****************************/
 @media only screen and (max-width: 750px) {
-  footer {
+  footer .links {
     flex-direction: column;
     align-items: flex-start;
   }
-
-  footer svg {
-    width: 18px;
+  
+  footer ul {
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -373,4 +387,54 @@ pre {
 pre code {
   box-shadow: unset;
   padding: 0;
+}
+
+/**********************************************************************/
+/* Forms
+/**********************************************************************/
+
+form {
+  display: flex;
+}
+
+form span {
+  margin-right: 0.5rem;
+  flex: 1;
+}
+
+form button {
+  background-color: var(--colour);
+  border-radius: 3px;
+  border: none;
+  color: var(--background);
+  font-weight: bold;
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+
+input {
+  background-color: var(--background);
+  border-radius: 3px;
+  border: 2px solid var(--text);
+  color: var(--grey);
+  margin-top: 1rem;
+  padding: 0.4rem;
+  width: 100%;
+}
+
+::placeholder {
+  opacity: 1;
+}
+
+
+/* Screens 750px or smaller */
+/****************************/
+@media only screen and (max-width: 750px) {
+  form {
+    flex-direction: column;
+  }
+
+  form span {
+    margin: 0;
+  }
 }
