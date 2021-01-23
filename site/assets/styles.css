@@ -211,7 +211,7 @@ header h1 svg g {
 /* Images
 /**********************************************************************/
 
-img {
+main img {
   max-width: 100%;
   display: block;
   margin: 2rem auto;
