@@ -77,6 +77,7 @@ body {
   padding: 0.5rem 1rem;
   color: var(--code);
   display: flex;
+  margin: 1rem 0 3rem 0;
 }
 
 .message p {
