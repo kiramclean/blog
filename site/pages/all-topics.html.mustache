@@ -6,7 +6,9 @@ slug: tags
 <ul class="tags">
 {{# site/tags }}
   <li>
-    <a href={{ tag/slug }}>{{ tag/label }}</a><code>{{ tag/count }}</code>
+    <a href={{ tag/slug }}>{{ tag/label }}</a>
+    <code>{{ tag/count }}</code>
+    <a href={{ tag/slug }}feed.xml>[RSS]</a>
   </li>
 {{/ site/tags }}
 </ul>
