@@ -1,0 +1,8 @@
+<h1>All posts about {{ tag/label }}</h1>
+<section>
+  <ul>
+    {{# tag/items }}
+      {{> post-list-item }}
+    {{/ tag/items }}
+  </ul>
+</section>

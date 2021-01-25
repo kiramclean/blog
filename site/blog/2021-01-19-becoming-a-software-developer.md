@@ -2,6 +2,9 @@
 date: 2021-01-19
 title: Becoming A Software Developer
 site/group: Recent
+site/tags:
+  - software
+  - careers
 ---
 
 I get asked a lot for advice on becoming a software developer. I didn't study anything related to software in university, but now it's what I do for a living. I also spent about 3.5 years mentoring with [Lighthouse Labs](https://www.lighthouselabs.ca), a local web development bootcamp, and watched (and would like to believe at least in some cases, helped) hundreds of people of every age from wildly diverse backgrounds get jobs as software developers.
@@ -32,9 +35,9 @@ Check out meetups for programming languages you're interested in, or if there ar
 
 ## Learn how to code, in public
 
-Without any formal education in software development, you have to offer something else to prove you actually know how to write code. I did this by building a bunch of crappy side projects. The very first thing I ever did was replicate the Google landing page with HTML and CSS. The first actual app I made was a blackjack game with Sinatra. I also made Twitter and Reddit clones with Rails, and little browser games like Pacman with different JavaScript frameworks. Some of that code still exists in my [GitHub graveyard](https://github.com/kmclean-old) if you want to see what I mean by crappy. Other common toy projects include link shorteners, photo galleries, e-commerce stores, time trackers, or clones of whatever software you normally use, like spreadsheets, workflow management, calendars, etc. The possibilities are endless. 
+Without any formal education in software development, you have to offer something else to prove you actually know how to write code. I did this by building a bunch of crappy side projects. The very first thing I ever did was replicate the Google landing page with HTML and CSS. The first actual app I made was a blackjack game with Sinatra. I also made Twitter and Reddit clones with Rails, and little browser games like Pacman with different JavaScript frameworks. Some of that code still exists in my [GitHub graveyard](https://github.com/kmclean-old) if you want to see what I mean by crappy. Other common toy projects include link shorteners, photo galleries, e-commerce stores, time trackers, or clones of whatever software you normally use, like spreadsheets, workflow management, calendars, etc. The possibilities are endless.
 
-Look for tutorials online that walk through how to build the kinds of things you're interested in. If you don't know where to start, [The Odin Project](https://www.theodinproject.com) and [Free Code Camp](https://www.freecodecamp.org) are two free programs that offer very realistic learning roadmaps. I did parts of both of those but never finished either. I also did several free courses on [Coursera](https://www.coursera.org/browse/computer-science) and [edX](https://www.edx.org/course/subject/computer-science), which are both amazing but you have to be careful not to end up in a rabbit hole. Those two mostly have actual university courses, which are super interesting, but not very relevant to things you'll do in a real job. 
+Look for tutorials online that walk through how to build the kinds of things you're interested in. If you don't know where to start, [The Odin Project](https://www.theodinproject.com) and [Free Code Camp](https://www.freecodecamp.org) are two free programs that offer very realistic learning roadmaps. I did parts of both of those but never finished either. I also did several free courses on [Coursera](https://www.coursera.org/browse/computer-science) and [edX](https://www.edx.org/course/subject/computer-science), which are both amazing but you have to be careful not to end up in a rabbit hole. Those two mostly have actual university courses, which are super interesting, but not very relevant to things you'll do in a real job.
 
 If your goal is to get from nothing to making money as a developer as fast as possible I recommend sticking to a more targeted learning roadmap like the two above. There are also countless paid ones which vary wildly in price and quality. Be weary about shelling out huge amounts of money for bootcamps. I did pay for a few months of [Launch School](https://launchschool.com) (which at the time was called "Tea Leaf Academy"), and it was the best career move I ever made. I highly recommend them because they're in a sweet spot of offering a robust and relevant curriculum without costing a fortune. It's not free ($200/month), but a few hundred dollars is a very small investment in the scheme of your career. Apparently they also offer a deferred payment option now, too.
 
@@ -64,7 +67,7 @@ The reality is that your first job or two will probably be pretty crappy and und
 
 I lucked out and worked with the most amazing team in the world for my first job as a developer, but I discovered from the students I mentored that that is very much not the norm.
 
-There are pros and cons to every kind of company, so don't worry too much about finding the perfect fit right away. Focus on gaining experience at first so you can have the freedom to focus on finding the perfect fit later. I've worked with a few different kinds of companies and there are pros and cons no matter where you go. 
+There are pros and cons to every kind of company, so don't worry too much about finding the perfect fit right away. Focus on gaining experience at first so you can have the freedom to focus on finding the perfect fit later. I've worked with a few different kinds of companies and there are pros and cons no matter where you go.
 
 Big corporations usually have a lot of experienced developers and lethargic processes, so there's more opportunity to take your time and get help from people more advanced than you. The pressure is often pretty low because people have such low expectations for new developers, which honestly is fair. You have a lot of room to screw up because you're such a tiny cog in a massive machine. The downsides depend on your personality. For me it was that I find most large tech companies to be evil and didn't like the soul-crushing feeling of helping to build something I hated.
 
@@ -86,51 +89,6 @@ There are certain things you can only really learn from experience on a real wor
 
 These are just a few examples of things you won't run into on your little demo projects. Pay attention to the problems you're dealing with at work that you don't run into on side projects and learn how to fix those. That's your pathway to levelling up. Most importantly, never stop learning.
 
-## That's all 
+## That's all
 
 Software development is a great career. It's allowed me to be financially independent and stable, travel the world, meet cool people, and lots more. My path won't work for everyone. There are as many different ways to become a software developer as there are people, but I've seen countless aspiring software engineers go through their own journeys and many of them touch on these points, so see how they fit in to your own path. And let me know how it goes 🙂
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

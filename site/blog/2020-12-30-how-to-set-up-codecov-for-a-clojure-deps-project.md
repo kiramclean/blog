@@ -2,6 +2,9 @@
 title: How To Set Up Codecov For a Clojure Deps Project
 date: 2020-12-30
 site/group: Recent
+site/tags:
+  - clojure
+  - testing
 ---
 
 ***Update**: I recently switched to using Github Actions to run my tests because I started getting git auth failures trying to fetch git deps on CircleCI. Learning the random YAML magic required to set up a github action was marginally less awful than faffing with ssh keys on circle. You can see the result in [this commit](https://github.com/kiramclean/morphy/commit/6964d1bbe3fd7130e179212f4088cebc753f5aec). The actual steps to set up codecov for your project are the same.*

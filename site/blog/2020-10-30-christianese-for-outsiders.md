@@ -2,6 +2,9 @@
 title: Christianese For Outsiders
 date: 2020-10-30
 site/group: Religion
+site/tags:
+  - faith
+  - church
 ---
 
 When I started hanging in out in religious circles in my late twenties for the first time in my life, I had a lot to learn. Not just about the diversity and depth of different religions, but also about the culture. There are certain words that mean different things in a religious context, and other ones that don't really exist outside of one at all. This a brief overview of some of the language I've picked up over the past few years. These definitions are all based on actual personal experiences from about two dozen different churches/synagogues/groups, so of course as such are entirely anecdotal. This isn't meant to be an academic or universal description of religious terminology, just some new words and ways language is used differently in religious contexts that I found interesting and which might be useful if you ever find yourself in a similar situation.

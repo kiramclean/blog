@@ -1,0 +1,12 @@
+---
+title: All topics
+slug: tags
+---
+
+<ul class="tags">
+{{# site/tags }}
+  <li>
+    <a href={{ tag/slug }}>{{ tag/label }}</a><code>{{ tag/count }}</code>
+  </li>
+{{/ site/tags }}
+</ul>

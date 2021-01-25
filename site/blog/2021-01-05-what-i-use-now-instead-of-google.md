@@ -2,13 +2,17 @@
 title: What I Use Now Instead Of Google
 date: 2021-01-05
 site/group: Recent
+site/tags:
+  - ungoogle
+  - software
+  - nextcloud
 ---
 
 I made a goal for myself in January 2020 to stop using Google products by the end of the year. That might sound like way too generous a timeline, but Google owned pretty much all of my data at that point, so it was a fairly large project. Plus I'm a slow and steady kind of person. I know if I give myself a generous enough timeline I can accomplish even things that seem too hard for me at first.
 
 ## First, Why
 
-Since I got into programming about 5 years ago, I kept hearing all these bad things about Google and how horrible of a company it is from other tech people. It always seemed a bit exaggerated to me, but the evidence has been piling up over the years. Learning about [their involvement](https://gizmodo.com/google-is-helping-the-pentagon-build-ai-for-drones-1823464533) with the US military's [Algorithmic Warfare Cross-Functional Team (Project Maven)](https://dodcio.defense.gov/Portals/0/Documents/Project%20Maven%20DSD%20Memo%2020170425.pdf) was the last straw for me <sup id="footnote-1"><a href= "https://kiramclean.com/blog/what-i-use-now-instead-of-google/#footnote-1-text">1</a></sup>, but even before I learned about that I was pretty uncomfortable with a lot of what I heard. In Google's defence they eventually did [pull out of the project](https://web.archive.org/web/20210101083904/https://www.nytimes.com/2018/06/01/technology/google-pentagon-project-maven.html) after [massive backlash by thousands of employees](https://web.archive.org/web/20201231204850/https://www.nytimes.com/2018/04/04/technology/google-letter-ceo-pentagon-project.html). 
+Since I got into programming about 5 years ago, I kept hearing all these bad things about Google and how horrible of a company it is from other tech people. It always seemed a bit exaggerated to me, but the evidence has been piling up over the years. Learning about [their involvement](https://gizmodo.com/google-is-helping-the-pentagon-build-ai-for-drones-1823464533) with the US military's [Algorithmic Warfare Cross-Functional Team (Project Maven)](https://dodcio.defense.gov/Portals/0/Documents/Project%20Maven%20DSD%20Memo%2020170425.pdf) was the last straw for me <sup id="footnote-1"><a href= "https://kiramclean.com/blog/what-i-use-now-instead-of-google/#footnote-1-text">1</a></sup>, but even before I learned about that I was pretty uncomfortable with a lot of what I heard. In Google's defence they eventually did [pull out of the project](https://web.archive.org/web/20210101083904/https://www.nytimes.com/2018/06/01/technology/google-pentagon-project-maven.html) after [massive backlash by thousands of employees](https://web.archive.org/web/20201231204850/https://www.nytimes.com/2018/04/04/technology/google-letter-ceo-pentagon-project.html).
 
 Still, I'm pretty convinced now that their continued existence is a catastrophe not only for public safety, but also for [the environment](https://www.vox.com/recode/2020/1/3/21030688/google-amazon-ai-oil-gas), [gender equity](https://www.nytimes.com/2018/11/01/technology/google-walkout-sexual-harassment.html), [the economy](https://www.telegraph.co.uk/technology/google/9739039/Googles-tax-avoidance-is-called-capitalism-says-chairman-Eric-Schmidt.html), [fair labour practices](https://www.vice.com/en/article/jgexe8/google-fired-an-engineer-who-wrote-code-telling-googlers-they-had-a-right-to-organize), [privacy](https://www.stallman.org/google.html#surveillance), [journalism](https://www.nature.com/articles/s41562-020-00954-0), [democracy](https://www.judiciary.senate.gov/download/epstein-testimony), [race relations](https://www.vox.com/2018/4/3/17168256/google-racism-algorithms-technology), and the [project of civilization itself](https://www.scientificamerican.com/article/big-tech-out-of-control-capitalism-and-the-end-of-civilization/). But anyway, the point of this post isn't to motivate you to also quit Google. I'll tell you how I really feel some other time.
 
@@ -18,7 +22,7 @@ The rest of this post is about the tools and services I replaced all the Google 
 
 Here's the short version:
 - GMail → [ProtonMail](https://protonmail.com/signup)
-- Chrome → [Firefox developer edition](https://www.mozilla.org/en-US/firefox/developer/) 
+- Chrome → [Firefox developer edition](https://www.mozilla.org/en-US/firefox/developer/)
 - Google search → [DuckDuckGo](https://duckduckgo.com/)
 - Google Drive → [Sync](https://www.sync.com/) and [Backblaze](https://www.backblaze.com/b2/cloud-storage.html)
 - Google DNS → [Cloudflare DNS](https://blog.cloudflare.com/announcing-1111/)
@@ -81,7 +85,7 @@ Nextcloud does the job of automatically syncing photos from my phone, though, wh
 
 I feel like I've won a lot by doing all this. I own my data now, so Google can't [arbitrarily take it away from me](https://www.businessinsider.com/google-users-locked-out-after-years-2020-10), which gives me peace of mind. I'm no longer part of their ad ecosystem, being tracked all around the internet and having my attention sold to the highest bidder. And I also feel good about "voting with my feet", so to speak. The fewer people use Google's free products, the lower their ability to sustain their unethical business model based on selling mass surveillance data.
 
-But I also lost some. Specifically a few hundred dollars. 
+But I also lost some. Specifically a few hundred dollars.
 
 Getting paid and paying for things in multiple currencies is the bane of my financial existence, but overall the final total comes out to something like CAD$400/year (roughly $300), broken down like this:
 
