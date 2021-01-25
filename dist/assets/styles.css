@@ -96,12 +96,21 @@ body {
   padding: 0;
 }
 
-.tags li:first-letter {
+.tags code {
+  margin: 0 0.5rem;
+  font-size: var(--small);
+}
+
+.tags li span {
+  display: inline-block;
+  width: 9rem;
+}
+
+.tags li span:first-letter {
   text-transform: capitalize;
 }
 
-.tags code {
-  margin-left: 0.5rem;
+.tags li .rss {
   font-size: var(--small);
 }
 
