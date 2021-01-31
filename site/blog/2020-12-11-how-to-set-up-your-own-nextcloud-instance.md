@@ -1,7 +1,7 @@
 ---
 title: How To Set Up Your Own Nextcloud Server
 date: 2020-12-19
-site/group: Recent
+site/group: Tech
 site/tags:
   - ungoogle
   - nextcloud

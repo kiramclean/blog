@@ -1,7 +1,7 @@
 ---
 title: How To Set Up Codecov For a Clojure Deps Project
 date: 2020-12-30
-site/group: Recent
+site/group: Tech
 site/tags:
   - clojure
   - testing
