@@ -218,6 +218,12 @@ header {
   line-height: 1;
 }
 
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 header nav a {
   fill: var(--colour);
   display: inline-block;
@@ -225,6 +231,21 @@ header nav a {
 
 header nav h1 {
   border: none;
+  display: inline-block;
+}
+
+header nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+}
+
+header nav ul li {
+  line-height: 1.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  font-size: 0.8rem;
 }
 
 header nav a:hover, header nav a:focus,
@@ -245,6 +266,11 @@ header h1 svg g {
     width: 278px;
     height: 50px;
   }
+  
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
   header h1 svg g {
     transform: matrix(0.7, 0, 0, 0.7, 0, 0);
@@ -252,7 +278,14 @@ header h1 svg g {
 
   header h1 {
     margin-top: 1rem;
-    margin-bottom: 2rem;
+  }
+  
+  header nav ul {
+    align-self: flex-end;
+  }
+  
+  header nav ul li {
+    display: inline;
   }
 }
 
