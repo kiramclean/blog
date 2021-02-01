@@ -4,41 +4,10 @@
     <title>Kira McLean</title>
     <link>https://kiramclean.com</link>
     <description>Kira's thoughts and guides on tech, life, and meaning.</description>
-    <lastBuildDate>Sun, 31 Jan 2021 15:52:26 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 31 Jan 2021 19:33:15 -0500</lastBuildDate>
     <atom:link href="https://kiramclean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>Morphy v0.0</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-      <item>
-        <title>My Search For A Mailing List Provider</title>
-        <description>&lt;p&gt;Recently I wanted to add a way to subscribe via email for my blog, because not everyone who reads uses RSS or wants to subscribe that way. I thought what I was looking for was pretty simple, but I had a really hard time finding something that fit. I know, I know, most people will just say &amp;quot;pick whatever works and move on with your life&amp;quot;, but that's not me. I hate using software that's more complicated than it needs to be, and I have a really hard time (like, emotionally) settling for sub-par until I'm convinced there really isn't any other option. I'm working on that but in the mean time I can't help it, so here we are.&lt;/p&gt;
-&lt;p&gt;In case anyone else is wondering what the current state of email services is, these are my notes about what I found.&lt;/p&gt;
-&lt;h2&gt;Requirements&lt;/h2&gt;
-&lt;p&gt;Going into this, these are the features I needed:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Confirmation of new subscribers (I later learned this is called &amp;quot;double opt-in&amp;quot;)&lt;/li&gt;
-&lt;li&gt;No reCaptchas, those are fucking annoying, and also depend on Google's &lt;a href=&quot;https://www.fastcompany.com/90369697/googles-new-recaptcha-has-a-dark-side&quot;&gt;typical, sleazy antics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Some other way to prevent bot sign ups&lt;/li&gt;
-&lt;li&gt;A sign up form that &lt;a href=&quot;https://kryogenix.org/code/browser/everyonehasjs.html&quot;&gt;works without JS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;No tracking or spy pixels embedded in emails. I ignore most emails that do this and &lt;a href=&quot;https://twitter.com/tomrossi7/status/1352264310966415362&quot;&gt;so do increasingly more people&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Simple, plain text emails. I also ignore most emails that have colourful boxes and images all over the place. I don't want my emails to look like spam, I want them to look like a letter from a friend (because that's kind of what I want them to be!)&lt;/li&gt;
-&lt;li&gt;A business model that does not rely on exploiting users&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These are a couple of things that I wanted, but would have went without given enough of my must-haves were met:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A clean, easy interface to write those plain emails&lt;/li&gt;
-&lt;li&gt;Simple, raw embeddable form ready to copy&lt;/li&gt;
-&lt;li&gt;Simple UI in general. Ideally not having to contact support to figure out to set up a basic mailing list.&lt;/li&gt;
-&lt;li&gt;Being able to control what users see every step of the way, i.e. redirecting to a custom page after signup, after confirmation, and after unsubscribe.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Basically I just wanted a simple way to manage an email list. I'm not trying to do &amp;quot;email marketing&amp;quot; or &amp;quot;campaigns&amp;quot; or whatever. I just want to send out a normal email about once a month to a list of people who asked to receive it. I need something &lt;em&gt;slightly&lt;/em&gt; fancier than just a plain form collecting email addresses and sending those emails manually, though, beacuse I want confirmation emails and unsubscribes to be handled automatically.&lt;/p&gt;
-&lt;p&gt;These are the services I tried and what I thought of them.&lt;/p&gt;
-&lt;h2&gt;ConvertKit&lt;/h2&gt;
-&lt;p&gt;This one is used by some newsletters I like and seems like a cool company&lt;/p&gt;
-</description>
-        <pubDate>Sat, 30 Jan 2021 00:00:00 -0500</pubDate>
-        <link>https://kiramclean.com/blog/my-search-for-a-mailing-list-provider/</link>
-        <guid isPermaLink="true">https://kiramclean.com/blog/my-search-for-a-mailing-list-provider/</guid>
-      </item>
       <item>
         <title>America Is A Scam</title>
         <description>&lt;p&gt;I just came across &lt;a href=&quot;https://twitter.com/DrPsyBuffy/status/1355537261232869381&quot;&gt;this TikTok video&lt;/a&gt; on Twitter and it broke my heart. It's a woman crying, utterly dismayed at how unfair life is, begging the totally legitimate question &amp;quot;how do people overcome poverty in America?&amp;quot;&lt;/p&gt;
@@ -57,7 +26,7 @@
 &lt;p&gt;I have no idea. I mean I do have some ideas about how I'd like things to change, but I have a much higher tolerance for societal upheaval than most people and if I got my way we'd  end up with another Trump on our hands, pandering to all the dishevelled conservatives who no longer recognize the world and want it to just go back to &amp;quot;the way it was&amp;quot;.&lt;/p&gt;
 &lt;p&gt;Realistically it will take a bold movement led by someone progressive but empathetic who can offer grace and compassion to the millions who long for the good ol' days to bring change.&lt;/p&gt;
 &lt;p&gt;It seems like that can't really happen until Americans decide what that change should even look like. Canadian politicians debate about how to fund the healthcare system or how much teachers should get paid, but nobody argues that people should have to just figure out &lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820074/&quot;&gt;healthcare&lt;/a&gt; or &lt;a href=&quot;https://www.washingtonpost.com/news/answer-sheet/wp/2018/06/23/there-is-a-movement-to-privatize-public-education-in-america-heres-how-far-it-is-has-gotten/&quot;&gt;education&lt;/a&gt; for themselves. Americans are decades behind in this conversation and don't even agree on &lt;em&gt;basic&lt;/em&gt; things, like what standard of living every citizen should be provided.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/JonHaidt&quot;&gt;Jonathan Haidt&lt;/a&gt; and his collaborators are the clearest thinkers I've heard on the topic of how to unite people as divided as we are now. &lt;a href=&quot;https://twitter.com/sapinker&quot;&gt;Steven Pinker&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/Yascha_Mounk&quot;&gt;Yascha Mounk&lt;/a&gt; seem to have some good ideas about what the future could realtisically look like. They also have way more optimism than I do. I'm also particularly interested in the work the &lt;a href=&quot;https://www.humanetech.com&quot;&gt;the Center for Humane Technology&lt;/a&gt; is doing to steer the tech industry in a less destructive direction.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/JonHaidt&quot;&gt;Jonathan Haidt&lt;/a&gt; and his collaborators are the clearest thinkers I've heard on the topic of how to unite people as divided as we are now. &lt;a href=&quot;https://twitter.com/sapinker&quot;&gt;Steven Pinker&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/Yascha_Mounk&quot;&gt;Yascha Mounk&lt;/a&gt; seem to have some good ideas about what the future could realtisically look like. They also have way more optimism than I do. I'm also particularly interested in the work &lt;a href=&quot;https://www.humanetech.com&quot;&gt;the Center for Humane Technology&lt;/a&gt; is doing to steer the tech industry in a less destructive direction.&lt;/p&gt;
 &lt;h2&gt;Change is coming, it's up to us what it looks like&lt;/h2&gt;
 &lt;p&gt;Societies where the majority of people cannot survive &lt;a href=&quot;https://www.bbc.com/future/article/20190218-are-we-on-the-road-to-civilisation-collapse&quot;&gt;collapse&lt;/a&gt;. Change is coming one way or another. It's like that saying &amp;quot;if you don't make time for your wellness, you'll be forced to make time for your illness.&amp;quot; This is already happening. The day of the Capitol coup was also a record-setting day for coronavirus deaths, but that story didn't even make the news at the time. Problems pile up and compound and eventually we're in such a mess that just &lt;a href=&quot;https://www.theatlantic.com/health/archive/2020/12/the-worst-case-scenario-is-happening-hospitals-are-overwhelmed/617301/&quot;&gt;keeping the lights on at the hospital&lt;/a&gt; is too much to ask. Eventually, things will change, one way or another.&lt;/p&gt;
 &lt;p&gt;America needs to achieve revolutionary results through bureaucratic means, or else find themselves with another revolution on their hands.&lt;/p&gt;
