@@ -4,50 +4,10 @@
     <title>Kira McLean | Command-line app</title>
     <link>https://kiramclean.com/tags/command-line-app/</link>
     <description>Kira's posts about command-line app</description>
-    <lastBuildDate>Fri, 19 Feb 2021 09:01:30 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 19 Feb 2021 09:02:27 -0500</lastBuildDate>
     <atom:link href="https://kiramclean.com/tags/command-line-app/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>Morphy v0.0</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-      <item>
-        <title>Command Line Options And Help Menus For Your Fast Clojure CLI</title>
-        <description>&lt;p&gt;I recently wrote about &lt;a href=&quot;/blog/building-a-fast-command-line-app-with-clojure/&quot;&gt;how to build a fast command-line app with Clojure&lt;/a&gt;, but to be fair it's a bit of an exaggeration to call what I made an &lt;em&gt;app&lt;/em&gt;. Where I left off was with a native, standalone executable, which is a great start for sure, but there's a long way to go until it's actually useful like something we would actually think of as an app.&lt;/p&gt;
-&lt;p&gt;The next step is to add command-line options and help menus, so people can have some clue about how to use it! The little utility I want to build is a tool to index the contents of a directory into a database. By &amp;quot;database&amp;quot; I mean a file, so my command line app will need to accept two arguments — an input directory and an output path for the resulting index.&lt;/p&gt;
-&lt;p&gt;This post picks up where my last post left off to add this functionality to the &lt;a href=&quot;https://github.com/kiramclean/indexer/tree/74ffbbcb99f5a55048025c969d6a718cfc828506&quot;&gt;skeleton command-line app&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Working with command line arguments&lt;/h2&gt;
-&lt;p&gt;There are a few ways to handle adding command line arguments to an app like this. One is to just do it all by hand — inspect the &lt;code&gt;args&lt;/code&gt; vector that gets passed into the &lt;code&gt;main&lt;/code&gt; function and do stuff with it by parsing the values at each position.&lt;/p&gt;
-&lt;p&gt;This is totally possible, but there's more stuff to handle than just taking &lt;code&gt;(first args)&lt;/code&gt;, &lt;code&gt;(second args)&lt;/code&gt;, and so on and passing those through the program. I want to handle optional arguments, and also have default arguments for when the optional ones are omitted by the user. I also want to validate the input, like making sure the arguments are the right type and format. I also might want to have sub-commands and handle arguments for &lt;em&gt;those&lt;/em&gt;. Think CLI sub-commands like &lt;code&gt;brew info &amp;lt;package-name&amp;gt;&lt;/code&gt; or &lt;code&gt;yarn add &amp;lt;package-name&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;All of this quickly ends up being a lot of boilerplate to write for a feature that is going to be very stable, so I think it makes sense to look for a library to handle it.&lt;/p&gt;
-&lt;h2&gt;Command line argument libraries&lt;/h2&gt;
-&lt;p&gt;There are a couple of candidates. There's an &lt;a href=&quot;https://github.com/clojure/tools.cli&quot;&gt;official Clojure tools.cli&lt;/a&gt; library that's meant to handle exactly the kind of faffing with arguments I described above. There's also &lt;a href=&quot;https://github.com/l3nz/cli-matic&quot;&gt;cli-matic&lt;/a&gt;, which uses the tools.cli library but adds another layer on top to provide an even more compact API. It appears to be pretty stable and has a very Clojurey README with a nice explanation of the differences and tradeoffs with the base &lt;code&gt;tools.cli&lt;/code&gt; library, so I'm going to use this one.&lt;/p&gt;
-&lt;p&gt;Add &lt;code&gt;cli-matic/cli-matic {:mvn/version &amp;quot;0.4.3&amp;quot;}&lt;/code&gt; to your &lt;code&gt;:deps&lt;/code&gt; in &lt;code&gt;deps.edn&lt;/code&gt; to use the library.&lt;/p&gt;
-&lt;h2&gt;App config for cli-matic&lt;/h2&gt;
-&lt;p&gt;There are basically two steps to get &lt;code&gt;cli-matic&lt;/code&gt; to handle command line arguments is write a config map for your app. The first is writing a configuration map for your app. The &lt;a href=&quot;https://github.com/l3nz/cli-matic/blob/master/README.md&quot;&gt;README&lt;/a&gt; has a great explanation and there are lots of &lt;a href=&quot;https://github.com/l3nz/cli-matic/tree/master/examples&quot;&gt;example projects&lt;/a&gt; you can copy to get started. This is what the config looks like for my app that takes two optional arguments:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;(def CONFIGURATION
-  {:app         {:command     &amp;quot;indexer&amp;quot;
-                 :description &amp;quot;A utility to index the contents of your directory into a .ttl file&amp;quot;
-                 :version     &amp;quot;0.0.0&amp;quot;}
-   :global-opts [{:option  &amp;quot;input-dir&amp;quot;
-                  :short   &amp;quot;in&amp;quot;
-                  :as      &amp;quot;Input directory (source of files to index)&amp;quot;
-                  :type    :string
-                  :default #(.getAbsolutePath (io/file &amp;quot;&amp;quot;))}]
-   :commands    [{:command     &amp;quot;build&amp;quot; :short &amp;quot;b&amp;quot;
-                  :spec        ::GLOBAL-ADD-VALIDATION
-                  :description [&amp;quot;Indexes the content of the given input-dir as RDF in a file at the given output-file&amp;quot;
-                                &amp;quot;&amp;quot;
-                                &amp;quot;The input-dir must exist and the output-file will be silently overwritten if it already exists.&amp;quot;]
-                  :opts        [{:option &amp;quot;input-dir&amp;quot; :short &amp;quot;in&amp;quot; :as &amp;quot;Input directory (source of files to index)&amp;quot;
-                                 :type :int :default 0 :spec ::ODD-SMALL}
-                                {:option &amp;quot;addendum-2&amp;quot; :short &amp;quot;b&amp;quot; :as &amp;quot;Second addendum (even)&amp;quot;
-                                 :type :int :default 0 :spec ::EVEN-SMALL}]
-                  :runs        add_numbers}
-                 ]})
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Fri, 19 Feb 2021 00:00:00 -0500</pubDate>
-        <link>https://kiramclean.com/blog/command-line-options-and-help-menus-for-your-fast-clojure-cli/</link>
-        <guid isPermaLink="true">https://kiramclean.com/blog/command-line-options-and-help-menus-for-your-fast-clojure-cli/</guid>
-      </item>
       <item>
         <title>Building A Fast Command Line App With Clojure</title>
         <description>&lt;p&gt;&lt;em&gt;&lt;time datetime=&quot;2021-02-18&quot;&gt;Originally published on February 18, 2021&lt;/time&gt;&lt;/em&gt;&lt;/p&gt;
