@@ -4,7 +4,7 @@
     <title>Kira McLean</title>
     <link>https://kiramclean.com</link>
     <description>Kira's thoughts and guides on tech, life, and meaning.</description>
-    <lastBuildDate>Fri, 19 Feb 2021 08:42:02 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 19 Feb 2021 09:01:30 -0500</lastBuildDate>
     <atom:link href="https://kiramclean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>Morphy v0.0</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -103,7 +103,7 @@ native-image --report-unsupported-elements-at-runtime \
              --initialize-at-build-time \
              --no-server \
              --no-fallback \
-             -jar test-cli \
+             -jar test-cli.jar \
              -H:Name=./test-cli
 
 echo &amp;quot;Success! Good to run ./test-cli&amp;quot;
