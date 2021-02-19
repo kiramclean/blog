@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kira McLean | Software</title>
+    <title>Kira McLean | Command Line Options And Help Menus For Your Fast Clojure CLI</title>
     <style>
       html {visibility: hidden; opacity:0;}
       a {color:  #0091ab;}
     </style>
-    <link rel="canonical" href="https://kiramclean.com" />
+    <link rel="canonical" href="https://kiramclean.com/blog/command-line-options-and-help-menus-for-your-fast-clojure-cli/" />
     <link rel="stylesheet" href="/assets/normalize.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/assets/styles.css?v=1.0.5" type="text/css" media="screen" />
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
     <link rel="alternate" href="https://kiramclean.com/feed.xml" type="application/rss+xml" title="Kira McLean">
     <script src="https://snake.kiramclean.com/script.js" data-site="EZHCZSEN" data-honor-dnt="true" defer></script>
 
-    <meta property="og:title" content="Software">
-    <meta property="og:description" content="">
-    <meta property="og:url" content="https://kiramclean.com">
+    <meta property="og:title" content="Command Line Options And Help Menus For Your Fast Clojure CLI">
+    <meta property="og:description" content="I recently wrote about &quot;how to build a fast command-line app with Clojure&quot; (/blog/building-a-fast-command-line-app-with-clojure/), but to be fair it's a bit of an exaggeration to call what I made an...">
+    <meta property="og:url" content="https://kiramclean.com/blog/command-line-options-and-help-menus-for-your-fast-clojure-cli/">
     <meta property="og:image" content="https://kiramclean.com/assets/images/logo.png">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Kira McLean">
@@ -26,9 +26,8 @@
   </head>  <body>
     <header>
       <div class="constrain">
-        <nav aria-label="breadcrumb">
-  <ul>
-    <li><a aria-label="Kira McLean" href="/"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" width="220" height="44">
+        <nav>
+  <a aria-label="Kira McLean" href="/"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" width="220" height="44">
 
 <g transform="matrix(0.55 0 0 0.55 0 0)">
     <path transform="matrix(0.1333333 0 0 -0.1333333 0 79.99998)"  d="M160 513C 113 481 87 435 102 408C 116 381 127 387 133 424C 141 473 168 510 196 510C 209 510 220 509 220 508C 220 506 186 411 146 295C 105 180 73 84 75 82C 77 80 87 81 98 84C 113 89 125 114 146 180C 161 230 176 270 179 270C 183 270 199 246 217 217C 260 145 328 70 350 70C 388 70 380 91 321 145C 256 206 192 297 206 309C 211 313 248 340 287 369C 375 432 410 473 410 508C 410 533 407 532 364 482C 315 427 210 336 203 344C 201 346 208 378 219 415C 248 509 247 530 212 530C 197 530 173 522 160 513z" stroke="none" />
@@ -38,53 +37,59 @@
     <path transform="matrix(0.1333333 0 0 -0.1333333 0 79.99998)"  d="M604 339C 600 332 595 314 594 298C 592 282 576 241 558 207C 522 139 481 109 454 130C 433 148 436 168 472 237C 489 271 501 302 497 306C 484 320 460 299 437 253C 402 184 397 146 418 119C 456 73 530 122 586 231C 625 309 659 273 625 188C 592 103 642 81 741 137C 744 139 752 129 758 115C 774 81 807 83 846 121C 877 151 878 151 885 131C 900 82 974 100 1018 164C 1051 212 1045 219 1011 172C 958 99 901 105 935 180C 965 246 941 251 894 190C 809 78 752 99 820 217C 863 293 940 326 940 269C 940 248 960 246 967 267C 974 287 939 310 903 310C 873 310 859 302 816 257C 788 228 757 191 747 176C 725 145 688 125 666 133C 652 138 652 143 665 174C 689 230 684 263 650 289C 627 305 621 317 625 331C 632 351 616 357 604 339z" stroke="none" />
     <path transform="matrix(0.1333333 0 0 -0.1333333 0 79.99998)"  d="M2229 271C 2158 197 2153 124 2217 99C 2247 88 2311 103 2330 125C 2348 146 2364 144 2375 118C 2390 84 2423 84 2461 118C 2494 148 2494 148 2505 126C 2518 100 2572 99 2599 124C 2616 139 2618 139 2623 125C 2630 109 2660 104 2660 119C 2660 136 2741 231 2766 242C 2804 260 2815 242 2801 185C 2787 130 2797 110 2839 110C 2868 110 2895 134 2925 185L2925 185L2942 215L2921 190C 2910 176 2900 162 2900 158C 2900 154 2886 143 2870 135C 2843 121 2839 121 2834 135C 2830 143 2833 163 2840 179C 2878 271 2806 313 2734 241C 2697 203 2692 203 2698 240C 2701 264 2699 270 2683 270C 2669 270 2661 259 2652 226C 2641 185 2584 120 2559 120C 2539 120 2537 153 2555 187C 2569 213 2571 223 2562 232C 2553 241 2546 239 2533 220C 2503 175 2431 108 2420 115C 2404 125 2408 167 2429 208C 2468 284 2534 318 2555 273C 2567 245 2580 243 2580 268C 2580 314 2515 324 2461 287C 2443 275 2409 238 2386 206C 2337 136 2282 102 2241 116C 2224 122 2214 134 2212 151C 2209 174 2214 178 2242 184C 2310 197 2368 258 2355 301C 2350 315 2339 320 2312 320C 2282 320 2269 312 2229 271zM2330 282C 2330 254 2239 178 2223 193C 2216 201 2239 241 2268 273C 2298 304 2330 309 2330 282z" stroke="none" />
 </g>
-</svg></a></li>
-    <li><a href="/tags/">All Topics</a></li>
-    <li aria-current="page">Software</li>
-  </ul>
+</svg></a>
 </nav>
       </div>
     </header>
     <main class="constrain">
-      <h1>All posts about software</h1>
-<section>
-  <ul>
-      <li>
-  <time datetime="February 19, 2021">February 19, 2021</time>
-  <div>
-    <a aria-label="Command Line Options And Help Menus For Your Fast Clojure CLI" href="/blog/command-line-options-and-help-menus-for-your-fast-clojure-cli/">Command Line Options And Help Menus For Your Fast Clojure CLI</a>
-  </div>
-</li>
-      <li>
-  <time datetime="February 18, 2021">February 18, 2021</time>
-  <div>
-    <a aria-label="Building A Fast Command Line App With Clojure" href="/blog/building-a-fast-command-line-app-with-clojure/">Building A Fast Command Line App With Clojure</a>
-  </div>
-</li>
-      <li>
-  <time datetime="January 19, 2021">January 19, 2021</time>
-  <div>
-    <a aria-label="Becoming A Software Developer" href="/blog/becoming-a-software-developer/">Becoming A Software Developer</a>
-  </div>
-</li>
-      <li>
-  <time datetime="January 5, 2021">January 5, 2021</time>
-  <div>
-    <a aria-label="What I Use Now Instead Of Google" href="/blog/what-i-use-now-instead-of-google/">What I Use Now Instead Of Google</a>
-  </div>
-</li>
-      <li>
-  <time datetime="August 3, 2020">August 3, 2020</time>
-  <div>
-    <a aria-label="Why Are Websites So Complicated Now?" href="/blog/why-are-websites-so-complicated-now/">Why Are Websites So Complicated Now?</a>
-  </div>
-</li>
-  </ul>
-</section>
+      <h1>Command Line Options And Help Menus For Your Fast Clojure CLI</h1>
+      <p>I recently wrote about <a href="/blog/building-a-fast-command-line-app-with-clojure/">how to build a fast command-line app with Clojure</a>, but to be fair it's a bit of an exaggeration to call what I made an <em>app</em>. Where I left off was with a native, standalone executable, which is a great start for sure, but there's a long way to go until it's actually useful like something we would actually think of as an app.</p>
+<p>The next step is to add command-line options and help menus, so people can have some clue about how to use it! The little utility I want to build is a tool to index the contents of a directory into a database. By &quot;database&quot; I mean a file, so my command line app will need to accept two arguments — an input directory and an output path for the resulting index.</p>
+<p>This post picks up where my last post left off to add this functionality to the <a href="https://github.com/kiramclean/indexer/tree/74ffbbcb99f5a55048025c969d6a718cfc828506">skeleton command-line app</a>.</p>
+<h2>Working with command line arguments</h2>
+<p>There are a few ways to handle adding command line arguments to an app like this. One is to just do it all by hand — inspect the <code>args</code> vector that gets passed into the <code>main</code> function and do stuff with it by parsing the values at each position.</p>
+<p>This is totally possible, but there's more stuff to handle than just taking <code>(first args)</code>, <code>(second args)</code>, and so on and passing those through the program. I want to handle optional arguments, and also have default arguments for when the optional ones are omitted by the user. I also want to validate the input, like making sure the arguments are the right type and format. I also might want to have sub-commands and handle arguments for <em>those</em>. Think CLI sub-commands like <code>brew info &lt;package-name&gt;</code> or <code>yarn add &lt;package-name&gt;</code>.</p>
+<p>All of this quickly ends up being a lot of boilerplate to write for a feature that is going to be very stable, so I think it makes sense to look for a library to handle it.</p>
+<h2>Command line argument libraries</h2>
+<p>There are a couple of candidates. There's an <a href="https://github.com/clojure/tools.cli">official Clojure tools.cli</a> library that's meant to handle exactly the kind of faffing with arguments I described above. There's also <a href="https://github.com/l3nz/cli-matic">cli-matic</a>, which uses the tools.cli library but adds another layer on top to provide an even more compact API. It appears to be pretty stable and has a very Clojurey README with a nice explanation of the differences and tradeoffs with the base <code>tools.cli</code> library, so I'm going to use this one.</p>
+<p>Add <code>cli-matic/cli-matic {:mvn/version &quot;0.4.3&quot;}</code> to your <code>:deps</code> in <code>deps.edn</code> to use the library.</p>
+<h2>App config for cli-matic</h2>
+<p>There are basically two steps to get <code>cli-matic</code> to handle command line arguments is write a config map for your app. The first is writing a configuration map for your app. The <a href="https://github.com/l3nz/cli-matic/blob/master/README.md">README</a> has a great explanation and there are lots of <a href="https://github.com/l3nz/cli-matic/tree/master/examples">example projects</a> you can copy to get started. This is what the config looks like for my app that takes two optional arguments:</p>
+<pre><code>(def CONFIGURATION
+  {:app         {:command     &quot;indexer&quot;
+                 :description &quot;A utility to index the contents of your directory into a .ttl file&quot;
+                 :version     &quot;0.0.0&quot;}
+   :global-opts [{:option  &quot;input-dir&quot;
+                  :short   &quot;in&quot;
+                  :as      &quot;Input directory (source of files to index)&quot;
+                  :type    :string
+                  :default #(.getAbsolutePath (io/file &quot;&quot;))}]
+   :commands    [{:command     &quot;build&quot; :short &quot;b&quot;
+                  :spec        ::GLOBAL-ADD-VALIDATION
+                  :description [&quot;Indexes the content of the given input-dir as RDF in a file at the given output-file&quot;
+                                &quot;&quot;
+                                &quot;The input-dir must exist and the output-file will be silently overwritten if it already exists.&quot;]
+                  :opts        [{:option &quot;input-dir&quot; :short &quot;in&quot; :as &quot;Input directory (source of files to index)&quot;
+                                 :type :int :default 0 :spec ::ODD-SMALL}
+                                {:option &quot;addendum-2&quot; :short &quot;b&quot; :as &quot;Second addendum (even)&quot;
+                                 :type :int :default 0 :spec ::EVEN-SMALL}]
+                  :runs        add_numbers}
+                 ]})
+</code></pre>
     </main>
 
     <footer>
       <div class="constrain">
+        <p>Get a <a href="/newsletter">monthly digest</a> of this blog in your inbox:</p>
+        <form
+  action="https://buttondown.email/api/emails/embed-subscribe/kiramclean"
+  method="post">
+  <span>
+    <input type="email" name="email" placeholder="Your Email Address">
+    <input type="hidden" value="1" name="embed" />
+  </span>
+  <button type="submit">Send me updates!</button>
+</form>
         <div class="links">
   <nav>
     <ul

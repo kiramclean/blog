@@ -66,10 +66,11 @@ as the preferred way to manage Clojure projects. It's extremely well designed, l
 <p>The app template from <code>clj-new</code> includes a default namespace that just prints &quot;Hello, World!&quot; and an alias for building an uberjar, which is just a java app that includes all the dependencies it needs so it can run on its own without worrying about what's installed or not on the host.</p>
 <p>Run <code>clj -X:uberjar</code> in your app directory, which should build a <code>test-cli.jar</code>. You can run your app now like <code>java -jar test-cli.jar</code>, and cry about how slow it is.</p>
 <h2>3. Make a standalone executable with GraalVM</h2>
-<p>Now you can use GraalVM to turn your uberjar into a snappy CLI. Run this magic command (note the names -- the <code>-jar</code> option is the location of the uberjar you just made and <code>-H:Name=</code> is the name of your future executable).</p>
+<p>Now you can use GraalVM to turn your uberjar into a snappy CLI. Run this magic command (note the names — the <code>-jar</code> option is the location of the uberjar you just made and <code>-H:Name=</code> is the name of your future executable).</p>
 <pre><code>native-image --report-unsupported-elements-at-runtime \
              --initialize-at-build-time \
              --no-server \
+             --no-fallback \
              -jar test-cli.jar \
              -H:Name=test-cli
 </code></pre>
@@ -95,6 +96,7 @@ echo &quot;Nativize it...&quot;
 native-image --report-unsupported-elements-at-runtime \
              --initialize-at-build-time \
              --no-server \
+             --no-fallback \
              -jar test-cli \
              -H:Name=./test-cli
 

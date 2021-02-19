@@ -5,6 +5,8 @@ site/group: Recent
 site/tags: 
     - clojure
     - software
+    - graalvm
+    - command-line app
 ---
 
 _<time datetime="2021-02-18">Originally published on February 18, 2021</time>_
@@ -38,12 +40,13 @@ Run `clj -X:uberjar` in your app directory, which should build a `test-cli.jar`.
 
 ## 3. Make a standalone executable with GraalVM
 
-Now you can use GraalVM to turn your uberjar into a snappy CLI. Run this magic command (note the names -- the `-jar` option is the location of the uberjar you just made and `-H:Name=` is the name of your future executable).
+Now you can use GraalVM to turn your uberjar into a snappy CLI. Run this magic command (note the names — the `-jar` option is the location of the uberjar you just made and `-H:Name=` is the name of your future executable).
 
 ```
 native-image --report-unsupported-elements-at-runtime \
              --initialize-at-build-time \
              --no-server \
+             --no-fallback \
              -jar test-cli.jar \
              -H:Name=test-cli
 ```
@@ -76,6 +79,7 @@ echo "Nativize it..."
 native-image --report-unsupported-elements-at-runtime \
              --initialize-at-build-time \
              --no-server \
+             --no-fallback \
              -jar test-cli \
              -H:Name=./test-cli
 
@@ -83,10 +87,4 @@ echo "Success! Good to run ./test-cli"
 ```
 
 The next thing I want to do is add some command-line options and a help menu, but this is already getting kind of long, so I'll leave it here for now. Happy coding 🙂
-
-
-
-
-
-
 
