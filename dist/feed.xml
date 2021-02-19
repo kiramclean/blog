@@ -4,10 +4,74 @@
     <title>Kira McLean</title>
     <link>https://kiramclean.com</link>
     <description>Kira's thoughts and guides on tech, life, and meaning.</description>
-    <lastBuildDate>Mon, 8 Feb 2021 21:32:31 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 18 Feb 2021 21:54:57 -0500</lastBuildDate>
     <atom:link href="https://kiramclean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>Morphy v0.0</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+      <item>
+        <title>Building A Fast Command Line App With Clojure</title>
+        <description>&lt;p&gt;&lt;em&gt;&lt;time datetime=&quot;2021-02-18&quot;&gt;Originally published on February 18, 2021&lt;/time&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Like most developers, I always have about a hundred ideas for little tools or apps I wish existed. Every once in a while I get the time and energy to magic one of them into existence. Clojure is my language of choice these days, but at first glance it's not super well suited to building little command-line apps (which is usually what I start with). Some things that make it not an obvious first choice:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Slow JVM startup time. It usually takes a second or two or more to fire up a JVM, which is an unacceptable startup penalty if your whole app is just a little utility meant to run fast.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;No coherent ecosystem. The Clojure community is very averse to batteries-included solutions. There are good reasons why, a main one being that we spend vastly more time maintaining apps than setting them up so we should aggressively avoid including non-essential dependencies, which add to our maintenance burden. This is fair and does work out really well for long-running projects (which is most Clojure projects). But, this means it's often frustrating and slow to get a new project started, compared to some languages at least. There's no &lt;code&gt;clojure new-cli-app&lt;/code&gt; type command you can just run to get a new app that works in 1 second.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This post is about how to build a command-line app with Clojure, using tools.deps and GraalVM.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;I assume you already have Clojure (including the CLI) and GraalVM installed. I use &lt;a href=&quot;https://github.com/shyiko/jabba&quot;&gt;jabba&lt;/a&gt; to manage JVMs on my machine, and installed and setup a GraalVM by running  &lt;code&gt;jabba install graalvm-ce-java11@20.3.0&lt;/code&gt; and then &lt;code&gt;jabba use graalvm-ce-java11@20.3&lt;/code&gt;. You also need the &lt;a href=&quot;https://www.graalvm.org/reference-manual/native-image/&quot;&gt;GraalVM native image&lt;/a&gt; utility, which I installed with &lt;code&gt;gu install native-image&lt;/code&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;GraalVM and Clojure community to the rescue&lt;/h2&gt;
+&lt;p&gt;GraalVM is basically a super fast JVM, which solves the problem of slow startup time. You can use it to build a standalone executable out of your Clojure app that will run instantly.&lt;/p&gt;
+&lt;p&gt;Even though there's no batteries-included way to manage Clojure projects, the community has put together a lot of great tools and guides the cover all the bases. The community seems to be converging around the &lt;a href=&quot;https://clojure.org/guides/deps_and_cli&quot;&gt;official Clojure CLI&lt;/a&gt; and associated tooling
+as the preferred way to manage Clojure projects. It's extremely well designed, like most things Clojure, but, also like most things Clojure, it's very bare-bones. It's &lt;em&gt;not&lt;/em&gt; an all-in-one command-line utility you can use to manage your whole project, like the angular or rails CLIs (which I didn't appreciate nearly enough in my former life 😢). You need to configure the Clojure CLI itself for it to be useful, but luckily that's really straightforward to do. What follows are the steps I did to make a new skeleton command-line app in Clojure. It follows the steps from &lt;a href=&quot;https://github.com/BrunoBonacci/graalvm-clojure/blob/master/doc/clojure-graalvm-native-binary.md&quot;&gt;this great guide&lt;/a&gt;, but I included the actual commands here because I use the Clojure CLI (&lt;code&gt;clj&lt;/code&gt;) instead of &lt;code&gt;lein&lt;/code&gt; to run things.&lt;/p&gt;
+&lt;h2&gt;1. Make a new Clojure project&lt;/h2&gt;
+&lt;p&gt;I use Sean Corfield's &lt;a href=&quot;https://github.com/seancorfield/clj-new&quot;&gt;&lt;code&gt;clj-new&lt;/code&gt;&lt;/a&gt; project to initialize new Clojure projects. Install it for your environment according the instructions in his README, then run &lt;code&gt;clj -X:new :template app :name kiramclean/test-cli&lt;/code&gt; to generate a new Clojure project (but replace &lt;code&gt;kiramclean/test-cli&lt;/code&gt; with &lt;code&gt;&amp;lt;your-name&amp;gt;/&amp;lt;project-name&amp;gt;&lt;/code&gt;).&lt;/p&gt;
+&lt;h2&gt;2. Make an uberjar&lt;/h2&gt;
+&lt;p&gt;The app template from &lt;code&gt;clj-new&lt;/code&gt; includes a default namespace that just prints &amp;quot;Hello, World!&amp;quot; and an alias for building an uberjar, which is just a java app that includes all the dependencies it needs so it can run on its own without worrying about what's installed or not on the host.&lt;/p&gt;
+&lt;p&gt;Run &lt;code&gt;clj -X:uberjar&lt;/code&gt; in your app directory, which should build a &lt;code&gt;test-cli.jar&lt;/code&gt;. You can run your app now like &lt;code&gt;java -jar test-cli.jar&lt;/code&gt;, and cry about how slow it is.&lt;/p&gt;
+&lt;h2&gt;3. Make a standalone executable with GraalVM&lt;/h2&gt;
+&lt;p&gt;Now you can use GraalVM to turn your uberjar into a snappy CLI. Run this magic command (note the names -- the &lt;code&gt;-jar&lt;/code&gt; option is the location of the uberjar you just made and &lt;code&gt;-H:Name=&lt;/code&gt; is the name of your future executable).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;native-image --report-unsupported-elements-at-runtime \
+             --initialize-at-build-time \
+             --no-server \
+             -jar test-cli.jar \
+             -H:Name=test-cli
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It takes a while on my machine for that to finish, but once it does you're good to go! You should have a standalone executable now that you can run from your terminal, which executes your Clojure app natively, and is way faster than running the jar on a regular JVM! Cool.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ time java -jar test-cli.jar
+Hello, World!
+java -jar test-cli.jar  4.31s user 1.10s system 113% cpu 4.792 total
+
+❯ time ./test-cli
+Hello, World!
+./test-cli  0.05s user 0.01s system 70% cpu 0.086 total
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;That's all for now&lt;/h2&gt;
+&lt;p&gt;I made an executable &lt;code&gt;bin/build&lt;/code&gt; script in my project with this in it to make the two steps above simpler:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+echo &amp;quot;Build jar...&amp;quot;
+
+clj -X:uberjar
+
+echo &amp;quot;Nativize it...&amp;quot;
+
+native-image --report-unsupported-elements-at-runtime \
+             --initialize-at-build-time \
+             --no-server \
+             -jar test-cli \
+             -H:Name=./test-cli
+
+echo &amp;quot;Success! Good to run ./test-cli&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The next thing I want to do is add some command-line options and a help menu, but this is already getting kind of long, so I'll leave it here for now. Happy coding 🙂&lt;/p&gt;
+</description>
+        <pubDate>Thu, 18 Feb 2021 00:00:00 -0500</pubDate>
+        <link>https://kiramclean.com/blog/building-a-fast-command-line-app-with-clojure/</link>
+        <guid isPermaLink="true">https://kiramclean.com/blog/building-a-fast-command-line-app-with-clojure/</guid>
+      </item>
       <item>
         <title>I Need People</title>
         <description>&lt;p&gt;This is the second post in a series about things the 2020 pandemic has taught me. The first was that &lt;a href=&quot;/blog/journalism-is-important/&quot;&gt;journalism is important&lt;/a&gt;. This one is about appreciating my friends and family in a new way. I've always loved the people in my life, but the feeling of actually &lt;em&gt;needing&lt;/em&gt; other people, like for survival, is new to me. I've always had this strong sense that worst case scenario I would always be fine on my own. Like if I really had to I could hack it alone, and that might not be ideal but in the end I'd be more or less fine. I realize now I was wrong.&lt;/p&gt;

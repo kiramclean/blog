@@ -15,7 +15,7 @@ I manage my mailing list and send out my newsletter with [Buttondown](https://bu
 
 ![Kira opting out of Buttondown email tracking](/assets/images/buttondown-opt-out.png)
 
-I have no interest in collecting any personal information about you and believe in interacting with people directly instead of spying on them to gather information. This approach means I might occasionally ask what people are interested in reading more of, or what people are enjoying, but responding to any such questions is always optional and I will never harass you or spy on you. I love hearing from people who read my writing, but I only want to correspond with people who _want_ to hear from me.
+I have no interest in collecting any personal information about you. This approach means I might occasionally ask what people are interested in reading more of, or what people are enjoying, but responding to any such questions is always optional and I will never harass you or spy on you. I love hearing from people who read my writing, but I only want to correspond with people who _want_ to hear from me.
 
 You can unsubscribe from the newsletter at any time which will delete your email address from my mailing list.
 

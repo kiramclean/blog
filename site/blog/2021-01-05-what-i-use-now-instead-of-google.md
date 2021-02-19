@@ -1,7 +1,7 @@
 ---
 title: What I Use Now Instead Of Google
 date: 2021-01-05
-site/group: Recent
+site/group: Tech
 site/tags:
   - ungoogle
   - software
