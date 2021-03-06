@@ -55,10 +55,41 @@ There are basically two steps to get `cli-matic` to handle command line argument
                  ]})
 ```
 
+## Validating arguments
 
+Adding validation to command line arguments is really simple with `cli-matic`. Like a good, modern Clojure library it uses [spec](https://clojure.org/guides/spec) behind the scenes to do the validation. Clojure spec is great for validating data, but it's not so great at communicating feedback. The error messages it returns are opaque and certainly wouldn't mean anything to a non-Clojure person.
 
+For example I want to make sure that the input directory someone specifies to source the files to index exists and that the output file they give _doesn't_ already exist. I can easily add that the the config, but the error messages that produces are bad:
 
+```
+Global option error: Spec failure for global option 'input-dir'
+-- Spec failed --------------------
 
+  "/Users/kira/does/not/exist"
+
+should satisfy
+
+  exists?
+
+-- Relevant specs -------
+
+:indexer.core/input-dir-validation:
+  babashka.fs/exists?
+
+-------------------------
+Detected 1 error
+```
+
+I can grok that, but I'm a Clojure developer. It's meaningless to most people.
+
+This is where [expound](https://github.com/bhb/expound) comes in. Instead of writing specs like
+
+```
+(s/def ::input-dir fs/exists?)
+(s/def ::output-name (complement fs/exists?))
+```
+
+We can use expound's 
 
 
 
