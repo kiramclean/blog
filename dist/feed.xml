@@ -4,10 +4,32 @@
     <title>Kira McLean</title>
     <link>https://kiramclean.com</link>
     <description>Kira's thoughts and guides on tech, life, and meaning.</description>
-    <lastBuildDate>Fri, 19 Feb 2021 09:02:27 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 10 Mar 2021 08:15:19 -0500</lastBuildDate>
     <atom:link href="https://kiramclean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <generator>Morphy v0.0</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+      <item>
+        <title>Ethics Are Missing From Software Development</title>
+        <description>&lt;p&gt;There is something conspicuously missing from software development education. As developers, we learn all about how to write, organize, design, share, use, and test software, but the discussion of &lt;em&gt;how&lt;/em&gt; that software will actually be used and what it's impact on the world will be is usually an afterthought.&lt;/p&gt;
+&lt;p&gt;What discussions do happen tend to be around licensing and intellectual property, with the main focus on not getting sued. That stuff matters, but it doesn't come close to addressing and grappling with the total impact of the tech industry.&lt;/p&gt;
+&lt;p&gt;The effects of software on the world are &lt;em&gt;enormous&lt;/em&gt;. It affects the way we do everything and shows up in every corner of our lives:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;how we keep in touch with friends and family&lt;/li&gt;
+&lt;li&gt;how we get around&lt;/li&gt;
+&lt;li&gt;how we work&lt;/li&gt;
+&lt;li&gt;how we learn about the world and make decisions&lt;/li&gt;
+&lt;li&gt;how we grow up&lt;/li&gt;
+&lt;li&gt;how we affect the planet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Preventing our software from making the world worse should be at the top of our minds as technologists, but it's almost always on the backburner. There's a huge disconnect between writing some characters on a computer and seeing effects in the real world.&lt;/p&gt;
+&lt;p&gt;I'm worried that's a really big problem, though. I really don't think it's an exaggeration to say that some of the most dire problems we need to collectively deal with in my lifetime are caused or exacerbated by software.&lt;/p&gt;
+&lt;p&gt;Things like the environmental crisis. Bitcoin bullshit already &lt;a href=&quot;https://digiconomist.net/bitcoin-energy-consumption&quot;&gt;consumes more resources&lt;/a&gt; than many countries. Or the mental health crisis. There's &lt;a href=&quot;https://www.aeaweb.org/articles?id=10.1257/aer.20190658&quot;&gt;good evidence&lt;/a&gt; that suggests the internet makes us meaner, angrier, and sadder than ever. Or the erosion of democracy worldwide. There's no doubt that social media is responsible for flooding our information ecosystem with disinformation, which &lt;a href=&quot;https://science.sciencemag.org/content/359/6380/1146.full&quot;&gt;spreads like cancer&lt;/a&gt; through our networks and leads us to making irrational decisions that can have deleterious long term effects.&lt;/p&gt;
+&lt;p&gt;I'm not advocating for every software engineer to become an ethicist, but we can do a lot better at being aware of the impact our work has on the world. It's definitely not nothing, and sometimes it's everything.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 10 Mar 2021 00:00:00 -0500</pubDate>
+        <link>https://kiramclean.com/blog/ethics-are-missing-from-software-development/</link>
+        <guid isPermaLink="true">https://kiramclean.com/blog/ethics-are-missing-from-software-development/</guid>
+      </item>
       <item>
         <title>Building A Fast Command Line App With Clojure</title>
         <description>&lt;p&gt;&lt;em&gt;&lt;time datetime=&quot;2021-02-18&quot;&gt;Originally published on February 18, 2021&lt;/time&gt;&lt;/em&gt;&lt;/p&gt;

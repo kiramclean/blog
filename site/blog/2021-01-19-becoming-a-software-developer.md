@@ -1,7 +1,7 @@
 ---
 date: 2021-01-19
 title: Becoming A Software Developer
-site/group: Recent
+site/group: Tech
 site/tags:
   - software
   - careers
